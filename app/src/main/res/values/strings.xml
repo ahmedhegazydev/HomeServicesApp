@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">HomeService</string>
+    <string name="pre">Premium</string>
+    <string name="free">Free</string>
+
+
+    <array name="menuOptions">
+        <item>Services</item>
+        <item>My Bookings</item>
+        <item>Search</item>
+        <item>History</item>
+        <item>Settings</item>
+        <item>Notifications</item>
+        <item>Help</item>
+        <item>About us</item>
+        <item>Contact us</item>
+
+    </array>
+
+    <string name="facebook_app_id">635717423558404</string>
+    <string name="fb_login_protocol_scheme">fb635717423558404</string>
+    <string name="AD_APP_ID">ca-app-pub-3330565936797075~9003311455</string>
+    <string name="Ad_UNIT_ID_BANNER">ca-app-pub-3330565936797075/9207503194</string>
+
+</resources>

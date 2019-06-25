@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "764111094900",
+    "firebase_url": "https://facelockerapp.firebaseio.com",
+    "project_id": "facelockerapp",
+    "storage_bucket": "facelockerapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:764111094900:android:d601e332931551cf",
+        "android_client_info": {
+          "package_name": "com.ahmed.homeservices"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "764111094900-6ut82vlc5pg34clg74cl7bs3nlntf88i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ahmed.homeservices",
+            "certificate_hash": "c975c4e3aef4625255bfe0f0b8475ff04b6d5797"
+          }
+        },
+        {
+          "client_id": "764111094900-f10a0ecp1qjr3n7r4dt3rran5jbra5vh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmlcSMn_DO4xx7LaM2BnHMg6N4BnYJNlQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "764111094900-f10a0ecp1qjr3n7r4dt3rran5jbra5vh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

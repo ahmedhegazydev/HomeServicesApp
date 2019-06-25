@@ -1,0 +1,206 @@
+buildscript {
+    repositories {
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.+'
+    }
+}
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+}
+
+apply plugin: 'com.google.gms.google-services'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.ahmed.homeservices"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+
+    }
+}
+
+dependencies {
+
+//kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+
+
+    //crash reporting
+//    implementation 'com.crashlytics.sdk.android:crashlytics:2.9.9'
+    //last version
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
+
+    implementation 'com.android.support:multidex:1.0.3'
+
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+//    implementation project(':library')
+//        implementation project(':SegmentedControl')
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+
+    implementation 'com.google.android.gms:play-services-ads:18.0.0'
+
+    //firebase
+    implementation 'com.google.firebase:firebase-crash:16.2.1'
+    implementation 'com.google.firebase:firebase-auth:18.0.0'
+    implementation 'com.google.firebase:firebase-database:18.0.0'
+//    implementation 'com.google.firebase:firebase-invites:17.0.0'
+//    implementation 'com.google.firebase:firebase-ads:17.2.1'
+    implementation 'com.google.firebase:firebase-core:17.0.0'
+    implementation 'com.google.firebase:firebase-messaging:19.0.1'
+//    implementation 'com.google.firebase:firebase-config:17.0.0'
+    implementation 'com.google.firebase:firebase-storage:18.0.0'
+//    implementation 'com.firebase:firebase-client-android:2.5.2'
+//    implementation 'com.google.firebase:firebase-appindexing:18.0.0'
+//    implementation 'com.google.firebase:firebase-inappmessaging-display:17.1.1'
+    implementation 'com.google.firebase:firebase-firestore:20.1.0'
+
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'com.roughike:bottom-bar:2.3.1'
+    implementation 'me.relex:circleindicator:1.2.2@aar'
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
+    implementation 'com.github.siyamed:android-shape-imageview:0.9.+@aar'
+    implementation 'com.github.gastricspark:scrolldatepicker:0.0.1'
+//    implementation 'com.google.android.gms:play-services-maps:16.1.0'
+    //implementation 'com.google.android.gms:play-services:12.0.1'
+    implementation 'com.google.android.gms:play-services-auth:16.0.1'
+
+
+    implementation 'com.github.jgabrielfreitas:BlurImageView:1.0.1'
+
+    implementation 'com.jakewharton:butterknife:10.1.0'
+//    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+    kapt 'com.jakewharton:butterknife-compiler:10.1.0'
+
+
+    //social media  facebook  login
+    implementation 'com.facebook.android:facebook-login:4.41.0'
+
+
+    implementation 'com.daimajia.easing:library:2.0@aar'
+    implementation 'com.daimajia.androidanimations:library:2.3@aar'
+    implementation 'com.github.dmytrodanylyk.shadow-layout:library:1.0.3'
+    implementation 'io.supercharge:shimmerlayout:2.1.0'
+    implementation 'com.airbnb.android:lottie:3.0.3'
+    implementation 'com.github.ybq:Android-SpinKit:1.2.0'
+//    implementation 'cn.pedant.sweetalert:library:1.3'
+    //implementation 'com.github.Leogiroux:sweet-alert-dialog:1.3'
+    implementation 'com.github.f0ris.sweetalert:library:1.5.1'
+
+    implementation 'com.github.GrenderG:Toasty:1.4.2'
+    implementation 'com.pixplicity.easyprefs:library:1.9.0'
+    implementation 'com.github.d-max:spots-dialog:1.1@aar'
+
+    implementation 'com.github.scottyab:showhidepasswordedittext:0.8'
+
+    //eventbus or otto
+    implementation 'org.greenrobot:eventbus:3.1.1'
+
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+
+    def lifecycle_version = "2.0.0"
+    // ViewModel and LiveData
+//    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
+    // alternatively - just ViewModel
+    //implementation "androidx.lifecycle:lifecycle-viewmodel:$lifecycle_version" // For Kotlin use lifecycle-viewmodel-ktx
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
+    // alternatively - just LiveData
+    implementation "androidx.lifecycle:lifecycle-livedata:$lifecycle_version"
+    // alternatively - Lifecycles only (no ViewModel or LiveData). Some UI
+    //     AndroidX libraries use this lightweight import for Lifecycle
+//    implementation "androidx.lifecycle:lifecycle-runtime:$lifecycle_version"
+//    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version" // For Kotlin use kapt instead of annotationProcessor
+    // alternately - if using Java8, use the following instead of lifecycle-compiler
+    implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
+    // optional - ReactiveStreams support for LiveData
+//    implementation "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle_version" // For Kotlin use lifecycle-reactivestreams-ktx
+    // optional - Test helpers for LiveData
+//    testImplementation "androidx.arch.core:core-testing:$lifecycle_version"
+
+
+    //android arc.
+    def arcVersion = "1.1.1"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.0.0'
+
+
+    //room database
+    def roomVersion = "1.1.1"
+    implementation 'androidx.room:room-runtime:2.0.0'
+//    annotationProcessor "android.arch.persistence.room:compiler:1.1.1"
+//    for Kotlin change the 'annotationProcessor' keyword to 'kapt' in gradle file.
+    kapt 'androidx.room:room-compiler:2.0.0'
+    androidTestImplementation 'androidx.room:room-testing:2.0.0'
+
+
+// For developers using AndroidX in their applications
+    implementation 'pub.devrel:easypermissions:3.0.0'
+    // For developers using the Android Support Library
+//    implementation 'pub.devrel:easypermissions:2.0.1'
+
+//    implementation 'com.github.RobertApikyan:SegmentedControl:1.1.3'
+//    implementation 'info.hoang8f:android-segmented:1.0.6'
+//    implementation 'com.github.orbismobile:android-MaterialPills:1.0.1'
+    implementation 'com.github.ceryle:SegmentedButton:v2.0.2'
+
+    implementation project(':duo-navigation-drawer')
+
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+//    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    kapt 'com.github.bumptech.glide:compiler:4.9.0'
+
+
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+
+    implementation 'com.github.abdularis:circularimageview:1.3'
+
+
+}
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == "com.android.support") {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion "26.+"
+            }
+        }
+    }
+
+    all*.exclude group: 'com.google.guava', module: 'listenablefuture'
+}

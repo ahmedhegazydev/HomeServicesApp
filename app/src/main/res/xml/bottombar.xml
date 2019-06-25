@@ -1,0 +1,30 @@
+<tabs>
+    <tab
+        id="@+id/tab_favorites"
+        icon="@drawable/ic_menu"
+        activeColor="#f15421"
+        inActiveColor="#d3d3d3"/>
+    <tab
+        id="@+id/tab_nearby"
+        icon="@drawable/ic_history"
+        activeColor="#f15421"
+        inActiveColor="#d3d3d3"/>
+    <tab
+        id="@+id/tab_friends"
+        icon="@drawable/ic_like"
+        activeColor="#f15421"
+        inActiveColor="#d3d3d3" />
+    <tab
+        id="@/tab_f1"
+        icon="@drawable/ic_notifications"
+        activeColor="#f15421"
+        inActiveColor="#d3d3d3"/>
+
+    <tab
+        id="@/tab_f1"
+        icon="@drawable/profiles"
+        activeColor="#f15421"
+        inActiveColor="#d3d3d3"/>
+
+</tabs>
+

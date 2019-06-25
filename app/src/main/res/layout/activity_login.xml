@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+
+    <!--<com.jgabrielfreitas.core.BlurImageView-->
+    <!--android:id="@+id/BlurImageView"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--app:radius="7"-->
+    <!--android:scaleType="centerCrop"-->
+    <!--android:src="@drawable/hd_abstract"-->
+    <!--/>-->
+    <com.jgabrielfreitas.core.BlurImageView
+        android:id="@+id/BlurImageViewLogin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/hd_abstract_2" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="36.7dp"
+            android:layout_marginTop="70dp"
+            android:orientation="horizontal">
+
+            <com.ahmed.homeservices.customfonts.MyTextView_Roboto_Bold
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Home"
+                android:textColor="#ffffff"
+                android:textSize="31sp" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="34dp"
+                android:layout_marginLeft="9.2dp"
+                android:layout_marginTop="5dp"
+                android:background="#ffffff" />
+
+            <com.ahmed.homeservices.customfonts.MyTextView_Roboto_Regular
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="8.5dp"
+                android:text="Services"
+                android:textColor="#f05421"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+
+        <com.ahmed.homeservices.customfonts.EditText_Roboto_Regular
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="34.6dp"
+            android:layout_marginTop="54.7dp"
+            android:layout_marginRight="33.6dp"
+            android:background="#00000000"
+            android:hint="Username"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/user"
+            android:inputType="text"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"
+            android:textSize="14.4sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="34.6dp"
+            android:layout_marginTop="6.5dp"
+            android:layout_marginRight="33.6dp"
+            android:background="#33ffffff" />
+
+
+        <com.ahmed.homeservices.customfonts.EditText_Roboto_Regular
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="34.6dp"
+            android:layout_marginTop="33.6dp"
+            android:layout_marginRight="33.6dp"
+            android:background="#00000000"
+            android:hint="Password"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@drawable/pass"
+            android:inputType="textPassword"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"
+            android:textSize="14.4sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="34.6dp"
+            android:layout_marginTop="6.5dp"
+            android:layout_marginRight="33.6dp"
+            android:background="#33ffffff" />
+
+        <com.ahmed.homeservices.customfonts.MyTextView_Roboto_Regular
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="34.6dp"
+            android:layout_marginTop="53.8dp"
+            android:layout_marginRight="33.6dp"
+            android:background="@drawable/rectangle"
+            android:gravity="center_horizontal"
+            android:padding="16.4dp"
+            android:text="LOGIN"
+            android:textColor="#ffffff"
+            android:textSize="13.3sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/Linear"
+        android:layout_marginLeft="34.6dp"
+        android:layout_marginTop="127.7dp"
+        android:layout_marginRight="33.6dp"
+        android:layout_marginBottom="23dp"
+        android:background="@drawable/rectangle_1"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:padding="16.4dp">
+
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/facebook_176" />
+
+        <com.ahmed.homeservices.customfonts.MyTextView_Roboto_Regular
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="CONNECT WITH FACEBOOK"
+            android:textColor="#ffffff"
+            android:textSize="14.4sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="28.1dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <com.ahmed.homeservices.customfonts.MyTextView_Roboto_Regular
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account?"
+            android:textColor="#ffffff"
+            android:textSize="14.4sp" />
+
+        <com.ahmed.homeservices.customfonts.MyTextView_Roboto_Regular
+            android:id="@+id/signUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Sign Up"
+            android:textColor="#d22532"
+            android:padding="10dp"
+            android:textSize="14.4sp" />
+    </LinearLayout>
+
+
+</RelativeLayout>

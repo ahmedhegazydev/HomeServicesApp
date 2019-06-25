@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    >
+
+    <!--<com.jgabrielfreitas.core.BlurImageView-->
+    <!--android:id="@+id/BlurImageView"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--app:radius="7"-->
+    <!--android:scaleType="centerCrop"-->
+    <!--android:src="@drawable/hd_abstract"-->
+    <!--/>-->
+    <com.jgabrielfreitas.core.BlurImageView
+        android:id="@+id/BlurImageViewLogin"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/wall3" />
+
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/wall8"
+
+        />
+
+    <LinearLayout
+        android:id="@+id/llLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+
+        <include layout="@layout/toolbar" />
+
+
+        <!--<com.ahmed.homeservices.customfonts.EditText_Roboto_Regular-->
+        <!--android:id="@+id/etEmailLogin"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginLeft="34.6dp"-->
+        <!--android:layout_marginRight="33.6dp"-->
+        <!--android:background="#00000000"-->
+        <!--android:drawableLeft="@drawable/user"-->
+
+        <!--android:drawablePadding="10dp"-->
+        <!--android:hint="Email"-->
+        <!--android:inputType="text"-->
+        <!--android:textColor="#ffffff"-->
+        <!--android:textColorHint="#ffffff"-->
+        <!--android:textSize="14.4sp" />-->
+
+        <com.ahmed.homeservices.customfonts.EditText_Roboto_Regular
+            android:id="@+id/etPhoneLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="34.6dp"
+            android:layout_marginRight="33.6dp"
+            android:background="#00000000"
+            android:drawableLeft="@drawable/user"
+            android:drawablePadding="10dp"
+            android:hint="Phone number"
+            android:inputType="text"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"
+            android:textSize="14.4sp" />
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="34.6dp"
+            android:layout_marginTop="6.5dp"
+            android:layout_marginRight="33.6dp"
+            android:background="#33ffffff" />
+
+
+        <com.ahmed.homeservices.customfonts.EditText_Roboto_Regular
+            android:id="@+id/etPassLoin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="34.6dp"
+            android:layout_marginTop="33.6dp"
+            android:layout_marginRight="33.6dp"
+            android:background="#00000000"
+            android:drawableLeft="@drawable/pass"
+            android:drawablePadding="10dp"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:textColor="#ffffff"
+            android:textColorHint="#ffffff"
+            android:textSize="14.4sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="34.6dp"
+            android:layout_marginTop="6.5dp"
+            android:layout_marginRight="33.6dp"
+            android:background="#33ffffff" />
+
+        <RelativeLayout
+            android:id="@+id/rlLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+            <LinearLayout
+                android:id="@+id/llBack"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:visibility="gone"
+                android:weightSum="100">
+
+
+                <com.ahmed.homeservices.customfonts.MyTextView_Roboto_Regular
+                    android:id="@+id/login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="34.6dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="50"
+                    android:background="@drawable/rectangle"
+                    android:gravity="center_horizontal"
+                    android:padding="16.4dp"
+                    android:text="LOGIN"
+                    android:textColor="#ffffff"
+                    android:textSize="13.3sp"
+                    android:visibility="visible" />
+
+
+                <com.ahmed.homeservices.customfonts.MyTextView_Roboto_Regular
+                    android:id="@+id/verifyEmail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginRight="33.6dp"
+                    android:layout_weight="50"
+                    android:background="@drawable/rectangle_green"
+                    android:gravity="center_horizontal"
+                    android:padding="16.4dp"
+                    android:text="Verify now"
+                    android:textColor="#ffffff"
+                    android:textSize="13.3sp"
+                    android:visibility="visible" />
+
+
+            </LinearLayout>
+
+            <com.github.ybq.android.spinkit.SpinKitView xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/progressLogin"
+                style="@style/SpinKitView.Small.ThreeBounce"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:visibility="gone"
+                app:SpinKit_Color="@color/White"
+
+                />
+
+            <com.ahmed.homeservices.customfonts.MyTextView_Roboto_Regular
+                android:id="@+id/loginMain"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="34.6dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginRight="33dp"
+                android:layout_weight="50"
+                android:background="@drawable/rectangle"
+                android:gravity="center_horizontal"
+                android:padding="16.4dp"
+                android:text="LOGIN"
+                android:textColor="#ffffff"
+                android:textSize="13.3sp"
+                android:visibility="visible" />
+
+
+        </RelativeLayout>
+
+        <TextView
+            android:id="@+id/tvForgotPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="15dp"
+            android:text="Forgot password?"
+            android:textColor="@color/OrangeRed"
+
+            />
+
+    </LinearLayout>
+
+    <!--<LinearLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_above="@+id/Linear"-->
+    <!--android:layout_marginLeft="34.6dp"-->
+    <!--android:layout_marginTop="127.7dp"-->
+    <!--android:layout_marginRight="33.6dp"-->
+    <!--android:layout_marginBottom="23dp"-->
+    <!--android:background="@drawable/rectangle_1"-->
+    <!--android:gravity="center_horizontal"-->
+    <!--android:orientation="horizontal"-->
+    <!--android:padding="16.4dp">-->
+
+    <!--<ImageView-->
+    <!--android:layout_width="25dp"-->
+    <!--android:layout_height="25dp"-->
+    <!--android:layout_gravity="center_horizontal"-->
+    <!--android:src="@drawable/facebook_176" />-->
+
+    <!--<com.ahmed.homeservices.customfonts.MyTextView_Roboto_Regular-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="3dp"-->
+    <!--android:paddingLeft="20dp"-->
+    <!--android:paddingRight="20dp"-->
+    <!--android:text="CONNECT WITH FACEBOOK"-->
+    <!--android:textColor="#ffffff"-->
+    <!--android:textSize="14.4sp" />-->
+    <!--</LinearLayout>-->
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/llLogin"
+        android:layout_marginLeft="34.6dp"
+        android:layout_marginTop="30.7dp"
+        android:layout_marginRight="33.6dp"
+        android:layout_marginBottom="23dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="0dp"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:weightSum="100">
+
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="40"
+                android:background="@color/orangered" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="20"
+                android:gravity="center"
+                android:text="Or"
+                android:textColor="@color/orangered"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="40"
+
+                android:background="@color/orangered" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/loginUsingFacebook"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginRight="10dp"
+                android:background="@drawable/rectangle_1"
+                android:padding="15dp"
+                android:src="@drawable/facebook" />
+
+            <ImageView
+                android:id="@+id/loginUsingGoogle"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/google_bg"
+                android:padding="17dp"
+                android:src="@drawable/google" />
+        </LinearLayout>
+
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/login_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="30dp"
+            android:visibility="gone"
+
+
+            />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="28.1dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <com.ahmed.homeservices.customfonts.MyTextView_Roboto_Regular
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account?"
+            android:textColor="#ffffff"
+            android:textSize="14.4sp" />
+
+        <com.ahmed.homeservices.customfonts.MyTextView_Roboto_Regular
+            android:id="@+id/signUp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:padding="10dp"
+            android:text="Sign Up"
+            android:textColor="#d22532"
+            android:textSize="14.4sp" />
+    </LinearLayout>
+
+
+</RelativeLayout>
