@@ -1,0 +1,8 @@
+http://www.geonames.org/export/ws-overview.html
+================================
+http://battuta.medunes.net/api/region/eg/all/?key=5f98028925dd65e8acc849daa2a921cf
+https://raw.githubusercontent.com/David-Haim/CountriesToCitiesJSON/master/countriesToCities.json
+http://battuta.medunes.net/api/country/all/?key=5f98028925dd65e8acc849daa2a921cf
+http://battuta.medunes.net/api/country/search/?region=cairo&key=5f98028925dd65e8acc849daa2a921cf
+https://raw.githubusercontent.com/rancheta/countryRegionCityJSON/master/city_json/countries.json
+https://github.com/rancheta/countryRegionCityJSON/blob/master/country_city_data/Egypt.json

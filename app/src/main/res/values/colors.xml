@@ -5,6 +5,10 @@
     <color name="colorAccent">#FF4081</color>
     <color name="bg_clolor">#fafafa</color>
 
+    <color name="graylight">#BEBEBE</color>
+    <color name="startblue">#2F4F4F</color>
+    <color name="endblue">#32CD32</color>
+
     <color name="shadow">#AA000000</color>
     <color name="White">#FFFFFF</color>
     <color name="Ivory">#FFFFF0</color>

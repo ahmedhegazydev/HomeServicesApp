@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import com.ahmed.homeservices.R;
 
+import butterknife.ButterKnife;
+
 public class ProfileActivity extends AppCompatActivity{
 
 
@@ -13,6 +15,8 @@ public class ProfileActivity extends AppCompatActivity{
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        ButterKnife.bind(this);
+
 
 
     }

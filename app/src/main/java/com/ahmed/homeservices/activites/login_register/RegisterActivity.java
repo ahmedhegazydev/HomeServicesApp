@@ -429,7 +429,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         user.setAddressOrCurruntLocation("Giza");
 
 //        registerUserUsingEmailPassword();
-        startPhoneNumberVerification(countryCodePicker.getSelectedCountryCodeWithPlus() + etUserPhone.getText().toString());
+        String fullPhone = countryCodePicker.getSelectedCountryCodeWithPlus() + etUserPhone.getText().toString();
+        Log.e(TAG, "register: "+ fullPhone);
+        startPhoneNumberVerification(fullPhone);
 
 
     }
@@ -450,42 +452,33 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 // User can sign in with email/link
                             } else {
                                 FirebaseAuth.getInstance().createUserWithEmailAndPassword(user.getUserEmail(), user.getUserPassword())
-                                        .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
-                                            @Override
-                                            public void onSuccess(AuthResult authResult) {
-                                                FirebaseDatabase.getInstance()
-                                                        .getReference()
-                                                        .child(Constants.APP_FIREBASE_DATABASE_REF)
-                                                        .push()
-                                                        .setValue(user)
-                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                            @Override
-                                                            public void onComplete(@NonNull Task<Void> task) {
-                                                                //login(null);
-//                           sendEmailVerification();
+                                        .addOnSuccessListener(authResult -> {
+                                            FirebaseDatabase.getInstance()
+                                                    .getReference()
+                                                    .child(Constants.APP_FIREBASE_DATABASE_REF)
+                                                    .push()
+                                                    .setValue(user)
+                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task1) {
+                                                            //login(null);
+//                                                                sendEmailVerification();
 //                                                                Toast.makeText(RegisterActivity.this, "User saved", Toast.LENGTH_SHORT).show();
-                                                                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                                                                startActivity(intent);
-                                                                finish();
+                                                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                                                            startActivity(intent);
+                                                            finish();
 
-                                                            }
-                                                        }).addOnFailureListener(new OnFailureListener() {
-                                                    @Override
-                                                    public void onFailure(@NonNull Exception e) {
+                                                        }
+                                                    }).addOnFailureListener(e -> {
                                                         Toast.makeText(RegisterActivity.this, Constants.NETWORK_ERROR, Toast.LENGTH_SHORT).show();
                                                         spotsDialog.dismiss();
 
 
-                                                    }
-                                                })
-                                                        .addOnCanceledListener(new OnCanceledListener() {
-                                                            @Override
-                                                            public void onCanceled() {
+                                                    })
+                                                    .addOnCanceledListener(() -> {
 
-                                                            }
-                                                        });
-                                                sendEmailVerification();
-                                            }
+                                                    });
+                                            sendEmailVerification();
                                         })
                                         .addOnFailureListener(new OnFailureListener() {
                                             @Override
