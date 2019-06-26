@@ -1,10 +1,5 @@
 package com.ahmed.homeservices.activites.login_register;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.content.ContextCompat;
-
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Build;
@@ -17,10 +12,18 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
+
 import com.ahmed.homeservices.R;
 import com.ahmed.homeservices.activites.home.MainActivity;
+import com.ahmed.homeservices.activites.phone.EnterSmsCodeActivity;
 import com.ahmed.homeservices.constants.Constants;
 import com.ahmed.homeservices.customfonts.EditText_Roboto_Regular;
+import com.ahmed.homeservices.fire_utils.RefBase;
+import com.ahmed.homeservices.models.Category;
 import com.ahmed.homeservices.models.User;
 import com.ahmed.homeservices.utils.Utils;
 import com.airbnb.lottie.LottieAnimationView;
@@ -42,12 +45,17 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.auth.SignInMethodQueryResult;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.hbb20.CountryCodePicker;
 import com.irozon.sneaker.Sneaker;
 import com.jgabrielfreitas.core.BlurImageView;
+import com.pixplicity.easyprefs.library.Prefs;
 
+import java.lang.reflect.Type;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -60,7 +68,6 @@ import butterknife.OnClick;
 import io.supercharge.shimmerlayout.ShimmerLayout;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
-    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     private static final int STATE_INITIALIZED = 1;
     //    @BindView(R.id.etPhoneLogin)
 //    EditText_Roboto_Regular etPhoneLogin;
@@ -69,11 +76,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private static final int STATE_VERIFY_SUCCESS = 4;
     private static final int STATE_SIGNIN_FAILED = 5;
     private static final int STATE_SIGNIN_SUCCESS = 6;
-    private String mVerificationId;
-    private PhoneAuthProvider.ForceResendingToken mResendToken;
+    private static final String TAG = "RegisterActivity";
     @BindView(R.id.countryCodePicker)
     CountryCodePicker countryCodePicker;
-    private static final String TAG = "RegisterActivity";
     @BindView(R.id.BlurImageViewRegister)
     BlurImageView BlurImageView;
     @BindView(R.id.etUserName)
@@ -138,6 +143,50 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     boolean freeOrPremSelected = false;
     User user = new User();
     FirebaseAuth firebaseAuth;
+    String phoneNumber;
+    Gson gson = new Gson();
+    Type type = new TypeToken<User>() {
+    }.getType();
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
+    private String mVerificationId;
+    private PhoneAuthProvider.ForceResendingToken mResendToken;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+//        insertCatItemsIntoFireDatabaseTest();
+
+    }
+
+    private void insertCatItemsIntoFireDatabaseTest() {
+
+        ArrayList<Category> categories = new ArrayList<>();
+        categories.add(new Category("Ac", 0));
+        categories.add(new Category("Electrician", 0));
+        categories.add(new Category("Plumber", 0));
+        categories.add(new Category("Carpenter", 0));
+        categories.add(new Category("TV", 0));
+        categories.add(new Category("Refrigerator", 0));
+        categories.add(new Category("Appliances", 0));
+        categories.add(new Category("RO", 0));
+        categories.add(new Category("Computers", 0));
+        categories.add(new Category("Mobile", 0));
+        categories.add(new Category("Home Security", 0));
+        categories.add(new Category("Pest Control", 0));
+        categories.add(new Category("Car Wash", 0));
+        categories.add(new Category("Cleaning", 0));
+        categories.add(new Category("Painting", 0));
+        categories.add(new Category("Washing Machine", 0));
+        categories.add(new Category("Packers Movers", 0));
+        categories.add(new Category("Laundry", 0));
+
+
+        for (Category category :
+                categories) {
+            RefBase.refCategoriesForService().push().setValue(category);
+        }
+
+    }
 
     //check phoneNumber is correct then resend code
     private void resendVerificationCode(String phoneNumber, PhoneAuthProvider.ForceResendingToken token) {
@@ -210,26 +259,27 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
         switch (uiState) {
             case STATE_INITIALIZED:
-                Log.d(TAG, "STATE_INITIALIZED");
+                Log.e(TAG, "STATE_INITIALIZED");
                 // Initialized state, show only the phone number field and start button
                 break;
             case STATE_CODE_SENT:
-                Log.d(TAG, "STATE_CODE_SENT");
+                Log.e(TAG, "STATE_CODE_SENT");
 //                Prefs.edit().remove(Constants.BOTTOM_SHEET_IS_SHOWN).apply();
+                codeSentSuccess();
                 break;
             case STATE_VERIFY_FAILED:
-                Log.d(TAG, "STATE_VERIFY_FAILED");
+                Log.e(TAG, "STATE_VERIFY_FAILED");
 
                 break;
             case STATE_VERIFY_SUCCESS:
-                Log.d(TAG, "STATE_VERIFY_SUCCESS");
+                Log.e(TAG, "STATE_VERIFY_SUCCESS");
                 break;
             case STATE_SIGNIN_FAILED:
-                Log.d(TAG, "STATE_SIGNIN_FAILED");
+                Log.e(TAG, "STATE_SIGNIN_FAILED");
                 // No-op, handled by sign-in check
                 break;
             case STATE_SIGNIN_SUCCESS:
-                Log.d(TAG, "STATE_SIGNIN_SUCCESS");
+                Log.e(TAG, "STATE_SIGNIN_SUCCESS");
                 // Np-op, handled by sign-in check
 //                registerUserToFireDatabase(user);
                 break;
@@ -248,8 +298,28 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
+    private void codeSentSuccess() {
+
+        Prefs.putString(Constants.USER, gson.toJson(user, type));
+
+        Intent intent = new Intent(this, EnterSmsCodeActivity.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.enter, R.anim.exit);
+        finish();
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     //check phoneNumber is correct with it's country code then send code
     private void startPhoneNumberVerification(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+        Prefs.edit().putString(Constants.PHONE_NUMBER, phoneNumber);
         spotsDialog.show();
         //Starts the phone number verification process for the given phone number.
         // Either sends an SMS with a 6 digit code to the phone number specified or triggers the callback with a complete AuthCredential that can be used to log in the user.
@@ -263,7 +333,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 //        mVerificationInProgress = true;
 //        mStatusText.setVisibility(View.INVISIBLE);
     }
-
 
     @Override
     protected void onDestroy() {
@@ -323,25 +392,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         user.setCreateDate(today);
         user.setAddressOrCurruntLocation("Giza");
 
-
-//        if (FirebaseAuth.getInstance().getCurrentUser() == null) {
-
-        spotsDialog.show();
-
-        registerUserIntoFirebaseDb();
-
-
-//        } else {
-//
-//        }
-
-                startPhoneNumberVerification(countryCodePicker.getSelectedCountryCodeWithPlus() + etUserPhone.getText().toString());
+//        registerUserUsingEmailPassword();
+        startPhoneNumberVerification(countryCodePicker.getSelectedCountryCodeWithPlus() + etUserPhone.getText().toString());
 
 
     }
 
-    private void registerUserIntoFirebaseDb() {
-
+    private void registerUserUsingEmailPassword() {
         FirebaseAuth.getInstance().fetchSignInMethodsForEmail(user.getUserEmail())
                 .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
                     @Override
@@ -472,11 +529,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return true;
         }
 
-        if (TextUtils.equals(etUserPassword.getText().toString(),
+        if (!TextUtils.equals(etUserPassword.getText().toString(),
                 etUserConfPass.getText().toString())) {
             //start anim
-            startWobble(etUserPassword);
-            etUserPassword.setError("Password does not match");
+            startWobble(etUserConfPass);
+            etUserConfPass.setError("Password does not match");
             return true;
         }
 
@@ -491,10 +548,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private boolean isEmpty(Editable text) {
-        if (TextUtils.isEmpty(text.toString())) {
-            return true;
-        }
-        return false;
+        return TextUtils.isEmpty(text.toString());
     }
 
     @Override
@@ -600,8 +654,28 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 mVerificationId = verificationId;
                 mResendToken = token;
                 updateUI(STATE_CODE_SENT);
+
+
+                Prefs.edit().putString(Constants.VERIFICATRION_ID, mVerificationId).apply();
             }
         };
+    }
+
+
+    public String getmVerificationId() {
+        return mVerificationId;
+    }
+
+    public void setmVerificationId(String mVerificationId) {
+        this.mVerificationId = mVerificationId;
+    }
+
+    public PhoneAuthProvider.ForceResendingToken getmResendToken() {
+        return mResendToken;
+    }
+
+    public void setmResendToken(PhoneAuthProvider.ForceResendingToken mResendToken) {
+        this.mResendToken = mResendToken;
     }
 
     @Override

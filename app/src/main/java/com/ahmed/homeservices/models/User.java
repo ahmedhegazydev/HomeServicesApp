@@ -5,14 +5,14 @@ import com.ahmed.homeservices.constants.Constants;
 public class User {
 
 
-    String userName;//Full name not user name
-    String userPassword;
-    String userEmail;
-    String userPhoneNumber;
-    String userType = Constants.USER_TYPE_FREE;
-    boolean userStatusActivation = false;
-    String createDate;
-    String addressOrCurruntLocation;
+    private String userName;//Full name not user name
+    private String userPassword;
+    private String userEmail;
+    private String userPhoneNumber;
+    private String userType = Constants.USER_TYPE_FREE;
+    private boolean userStatusActivation = false;
+    private String createDate;
+    private String addressOrCurruntLocation;
 
     public User(String userName, String userPassword, String userEmail, String userPhoneNumber, String userType, boolean userStatusActivation) {
         this.userName = userName;

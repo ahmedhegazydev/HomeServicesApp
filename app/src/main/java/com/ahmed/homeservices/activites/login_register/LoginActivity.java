@@ -1,9 +1,5 @@
 package com.ahmed.homeservices.activites.login_register;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -20,15 +16,19 @@ import android.text.TextUtils;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.ahmed.homeservices.R;
 import com.ahmed.homeservices.activites.home.MainActivity;
 import com.ahmed.homeservices.constants.Constants;
 import com.ahmed.homeservices.customfonts.EditText_Roboto_Regular;
 import com.ahmed.homeservices.customfonts.MyTextView_Roboto_Regular;
+import com.ahmed.homeservices.fire_utils.RefBase;
 import com.ahmed.homeservices.models.User;
 import com.ahmed.homeservices.utils.Utils;
 import com.airbnb.lottie.LottieAnimationView;
@@ -68,11 +68,11 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.hbb20.CountryCodePicker;
 import com.irozon.sneaker.Sneaker;
 import com.jgabrielfreitas.core.BlurImageView;
+import com.pixplicity.easyprefs.library.Prefs;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -107,8 +107,8 @@ public class LoginActivity extends AppCompatActivity {
     BlurImageView BlurImageView;
     @BindView(R.id.etPhoneLogin)
     EditText_Roboto_Regular etPhoneLogin;
-    @BindView(R.id.ivLogo)
-    ImageView ivLogo;
+    //    @BindView(R.id.ivLogo)
+//    ImageView ivLogo;
     @BindView(R.id.verifyEmail)
     MyTextView_Roboto_Regular verifyEmail;
     @BindView(R.id.etPassLoin)
@@ -229,14 +229,16 @@ public class LoginActivity extends AppCompatActivity {
         if (isEmpty(etPhoneLogin.getText())) {
             //start anim
             startWobble(etPhoneLogin);
-            etPhoneLogin.setError("Enter email address");
+//            etPhoneLogin.setError("Enter email address");
+            etPhoneLogin.setError("Enter phone number");
+
             return true;
         }
-        if (!Utils.getInstance().isValidEmail(etPhoneLogin.getText().toString())) {
-            startWobble(etPhoneLogin);
-            etPhoneLogin.setError("Enter valid email");
-            return true;
-        }
+//        if (!Utils.getInstance().isValidEmail(etPhoneLogin.getText().toString())) {
+//            startWobble(etPhoneLogin);
+//            etPhoneLogin.setError("Enter valid email");
+//            return true;
+//        }
 
 
         if (isEmpty(etPassLoin.getText())) {
@@ -285,6 +287,11 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+
     @OnClick(R.id.loginMain)
     public void loginMain(View view) {
         login(null);
@@ -306,39 +313,68 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void fireLoginWithPhonePassword() {
+        if (!spotsDialog.isShowing())
+            spotsDialog.show();
 
-        FirebaseDatabase.getInstance().getReference(Constants.APP_FIREBASE_DATABASE_REF)
-                .child(Constants.USERS)
-                .equalTo(etPhoneLogin.getText().toString())
-                .addListenerForSingleValueEvent(new ValueEventListener() {
+        Log.e(TAG, "fireLoginWithPhonePassword: " + Prefs.getString(Constants.FIREBASE_UID, ""));
+
+//        FirebaseDatabase.getInstance().getReference(Constants.APP_FIREBASE_DATABASE_REF)
+//                .child(Constants.USERS)
+        RefBase.refUser(Prefs.getString(Constants.FIREBASE_UID, ""))
+//                .child(Prefs.getString(Constants.FIREBASE_UID, ""))
+//                .child(Constants.PHONE)
+//                .equalTo(etPhoneLogin.getText().toString())
+//                .addListenerForSingleValueEvent(new ValueEventListener() {
+                .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         if (dataSnapshot.exists()) {
-                            Log.e(TAG, "onDataChange: phone ");
-                            FirebaseDatabase.getInstance().getReference(Constants.APP_FIREBASE_DATABASE_REF)
-                                    .child(Constants.USERS)
-                                    .equalTo(etPassLoin.getText().toString())
-                                    .addListenerForSingleValueEvent(new ValueEventListener() {
-                                        @Override
-                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                            if (dataSnapshot.exists()) {
-                                                Log.e(TAG, "onDataChange:  pass ");
-                                                startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                                finish();
+                            Log.e(TAG, "onDataChange: " + dataSnapshot.getValue(User.class)
+                                    .getUserPhoneNumber());
+                            Log.e(TAG, "onDataChange: " + etPhoneLogin.getText().toString());
+                            if (dataSnapshot.getValue(User.class).getUserPhoneNumber() ==
+//                                    countryCodePicker.getSelectedCountryCodeWithPlus() +
+                                    etPhoneLogin.getText().toString()) {
+                                Log.e(TAG, "onDataChange: phone ");
+//                            FirebaseDatabase.getInstance().getReference(Constants.APP_FIREBASE_DATABASE_REF)
+//                                    .child(Constants.USERS)
+                                RefBase.refUser(Prefs.getString(Constants.FIREBASE_UID, ""))
+//                                        .child(Constants.PASSWORD)
+//                                        .equalTo(etPassLoin.getText().toString())
+                                        .addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                if (dataSnapshot.exists()) {
+                                                    if (dataSnapshot.getValue(User.class).getUserPassword() ==
+                                                            etPassLoin.getText().toString()) {
+                                                        spotsDialog.dismiss();
 
-                                            } else {
-                                                Toast.makeText(LoginActivity.this, Constants.INVALID_PASS, Toast.LENGTH_SHORT).show();
+                                                        Log.e(TAG, "onDataChange:  pass ");
+                                                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                                                        finish();
+                                                    } else {
+                                                        Toast.makeText(LoginActivity.this, Constants.INVALID_PASS, Toast.LENGTH_SHORT).show();
+                                                        spotsDialog.dismiss();
+                                                        etPassLoin.setError(Constants.INVALID_PASS);
+                                                    }
+
+                                                } else {
+
+                                                }
                                             }
 
-                                        }
-
-                                        @Override
-                                        public void onCancelled(@NonNull DatabaseError databaseError) {
-                                            Sneaker.with((Activity) getApplicationContext()).setTitle(Constants.NETWORK_ERROR).sneakError();
-                                        }
-                                    });
+                                            @Override
+                                            public void onCancelled(@NonNull DatabaseError databaseError) {
+                                                Sneaker.with((Activity) getApplicationContext()).setTitle(Constants.NETWORK_ERROR).sneakError();
+                                                spotsDialog.dismiss();
+                                            }
+                                        });
+                            } else {
+                                spotsDialog.dismiss();
+                                Toast.makeText(LoginActivity.this, Constants.INVALID_PHONE, Toast.LENGTH_SHORT).show();
+                                etPhoneLogin.setError(Constants.INVALID_PHONE);
+                            }
                         } else {
-                            Toast.makeText(LoginActivity.this, Constants.INVALID_PHONE, Toast.LENGTH_SHORT).show();
                         }
 
                     }
@@ -346,6 +382,8 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
                         Sneaker.with((Activity) getApplicationContext()).setTitle(Constants.NETWORK_ERROR).sneakError();
+                        spotsDialog.dismiss();
+
                     }
                 });
     }
@@ -526,10 +564,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean isEmpty(Editable text) {
-        if (TextUtils.isEmpty(text.toString())) {
-            return true;
-        }
-        return false;
+        return TextUtils.isEmpty(text.toString());
     }
 
     private void checkIfEmailVerified() {
@@ -806,7 +841,7 @@ public class LoginActivity extends AppCompatActivity {
 
         String EMAIL = "email", publicProfile = "public_profile";
 
-        LoginButton loginButton = (LoginButton) findViewById(R.id.login_button);
+        LoginButton loginButton = findViewById(R.id.login_button);
         loginButton.setReadPermissions(Arrays.asList(EMAIL, publicProfile));
         // If you are using in a fragment, call loginButton.setFragment(this);
 

@@ -16,8 +16,22 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon">
-        <activity android:name=".activites.phone.EnterPhoneActivity"></activity>
-        <activity android:name=".activites.profile.ProfileActivity"></activity>
+        <activity
+            android:name=".activites.phone.EnterSmsCodeActivity"
+            android:screenOrientation="portrait">
+
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
+
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
+
+        </activity>
+        <activity
+            android:name=".activites.profile.ProfileActivity"
+            android:screenOrientation="portrait"
+
+            ></activity>
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
@@ -43,24 +57,28 @@
             </intent-filter>
         </activity>
         <activity
+            android:screenOrientation="portrait"
+
             android:name=".activites.login_register.RegisterActivity"
             android:noHistory="true">
 
-            <!-- <intent-filter> -->
-            <!-- <action android:name="android.intent.action.MAIN" /> -->
-
-
-            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
-            <!-- </intent-filter> -->
-        </activity>
-        <activity
-            android:name=".activites.login_register.LoginActivity"
-            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activites.login_register.LoginActivity"
+
+            android:noHistory="true"
+            android:screenOrientation="portrait">
+            <!--<intent-filter>-->
+            <!--<action android:name="android.intent.action.MAIN" />-->
+
+            <!--<category android:name="android.intent.category.LAUNCHER" />-->
+            <!--</intent-filter>-->
         </activity>
         <activity android:name=".activites.home.MainActivity">
 

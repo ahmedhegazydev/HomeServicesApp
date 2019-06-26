@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".activites.phone.EnterSmsCodeActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Sms Code"
+            android:textColor="@color/Black"
+            android:textSize="20sp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Please enter sms code"
+            android:textColor="@color/gray_btn_bg_pressed_color"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="@color/LightGrey"
+            android:padding="6dp">
+
+            <com.alimuzaffar.lib.pin.PinEntryEditText
+                android:id="@+id/etSmsCode"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="0dp"
+                android:layout_marginRight="0dp"
+                android:cursorVisible="false"
+                android:digits="1234567890"
+                android:inputType="number"
+                android:layoutDirection="ltr"
+                android:maxLength="6"
+                android:textIsSelectable="false"
+
+                />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+
+
+            >
+
+
+            <TextView
+                android:id="@+id/tvResendSmsCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:text="Resend sms code"
+                android:textAllCaps="false"
+                android:textColor="@color/gray_btn_bg_pressed_color"
+                android:textSize="18sp" />
+
+
+            <TextView
+                android:id="@+id/tvActivate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:background="@color/Orange"
+                android:paddingLeft="10dp"
+                android:paddingTop="10dp"
+                android:paddingRight="10dp"
+                android:paddingBottom="10dp"
+                android:text="Activate"
+                android:textAllCaps="false"
+                android:textColor="@color/whitesmoke"
+                android:textSize="15sp" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/llRechangePhoneNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:orientation="horizontal"
+            android:paddingLeft="10dp"
+            android:paddingTop="18dp"
+            android:paddingRight="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Register with another phone? "
+                android:textColor="@color/Orange"
+                android:textSize="18sp"
+
+                />
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="0312012121"-->
+            <!--android:textColor="@color/DimGray"-->
+
+
+            <!--/>-->
+
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:paddingLeft="5dp"-->
+            <!--android:text="your number"-->
+            <!--android:textColor="@color/Orange"-->
+            <!--android:textSize="13sp"-->
+
+            <!--/>-->
+        </LinearLayout>
+
+
+    </LinearLayout>
+</RelativeLayout>
