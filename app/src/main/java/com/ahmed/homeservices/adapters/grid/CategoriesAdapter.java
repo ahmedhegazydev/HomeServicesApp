@@ -8,18 +8,17 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.ahmed.homeservices.R;
 import com.ahmed.homeservices.models.Category;
 import com.ahmed.homeservices.view_holders.ViewHolderCat;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class CategoriesAdapter extends BaseAdapter {
 
     private Context mContext;
-    private  Category[] categories;
+    private Category[] categories;
     private ArrayList<Category> categoryArrayList = new ArrayList<>();
 
     public CategoriesAdapter(Context context, ArrayList<Category> categoryArrayList) {
@@ -60,8 +59,8 @@ public class CategoriesAdapter extends BaseAdapter {
             final LayoutInflater layoutInflater = LayoutInflater.from(mContext);
             convertView = layoutInflater.inflate(R.layout.layout_category_grid_item, null);
 
-            final ImageView imageViewIcon = (ImageView) convertView.findViewById(R.id.ivIcon);
-            final TextView tvCatTitle = (TextView) convertView.findViewById(R.id.tvTitle);
+            final ImageView imageViewIcon = convertView.findViewById(R.id.ivIcon);
+            final TextView tvCatTitle = convertView.findViewById(R.id.tvTitle);
 
 
             final ViewHolderCat viewHolder = new ViewHolderCat(tvCatTitle, imageViewIcon);
@@ -69,7 +68,12 @@ public class CategoriesAdapter extends BaseAdapter {
         }
 
         final ViewHolderCat viewHolder = (ViewHolderCat) convertView.getTag();
-        viewHolder.imageViewIcon.setImageResource(category.getIconResId());
+
+
+//        viewHolder.imageViewIcon.setImageResource(category.getIconResId());
+        Picasso.get().load(category.getDownloadUrl())
+                .into(viewHolder.imageViewIcon);
+
 //        viewHolder.tvTitle.setText(mContext.getString(category.getTitle()));
         viewHolder.tvTitle.setText(category.getTitle());
 

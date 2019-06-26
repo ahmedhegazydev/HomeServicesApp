@@ -144,6 +144,7 @@ dependencies {
 
     implementation 'com.google.code.gson:gson:2.8.5'
 
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
     def lifecycle_version = "2.0.0"
     // ViewModel and LiveData
@@ -197,7 +198,6 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.9.0'
 
 
-    implementation 'com.squareup.picasso:picasso:2.71828'
 
 
     implementation 'com.github.abdularis:circularimageview:1.3'

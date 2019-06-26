@@ -2,28 +2,34 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
+    android:background="@color/gray"
     android:gravity="center_horizontal"
-    android:background="@color/White"
+    android:orientation="vertical"
+    android:padding="1dp"
+
     >
 
     <ImageView
-        android:src="@drawable/profile"
+        android:id="@+id/ivIcon"
+        android:background="@color/White"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:scaleType="centerCrop"
-        android:id="@+id/ivIcon"
-        />
+        android:src="@drawable/profile" />
 
     <TextView
+        android:id="@+id/tvTitle"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:textColor="@color/Gray"
-        android:text="Painting"
-        android:textSize="17sp"
+        android:background="@color/White"
+        android:ellipsize="end"
+        android:gravity="center"
         android:padding="10dp"
-        android:textStyle="bold"
-        android:id="@+id/tvTitle"
+        android:maxLines="1"
+        android:text="Painting"
+        android:textColor="@color/Gray"
+        android:textSize="14sp"
+        android:textStyle="normal"
 
         />
 

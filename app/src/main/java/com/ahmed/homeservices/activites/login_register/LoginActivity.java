@@ -332,9 +332,11 @@ public class LoginActivity extends AppCompatActivity {
                             Log.e(TAG, "onDataChange: " + dataSnapshot.getValue(User.class)
                                     .getUserPhoneNumber());
                             Log.e(TAG, "onDataChange: " + etPhoneLogin.getText().toString());
-                            if (dataSnapshot.getValue(User.class).getUserPhoneNumber() ==
+//                            if (dataSnapshot.getValue(User.class).getUserPhoneNumber() ==
 //                                    countryCodePicker.getSelectedCountryCodeWithPlus() +
-                                    etPhoneLogin.getText().toString()) {
+//                                    etPhoneLogin.getText().toString()) {
+                            if (TextUtils.equals(dataSnapshot.getValue(User.class).getUserPhoneNumber(),
+                                    etPhoneLogin.getText().toString())) {
                                 Log.e(TAG, "onDataChange: phone ");
 //                            FirebaseDatabase.getInstance().getReference(Constants.APP_FIREBASE_DATABASE_REF)
 //                                    .child(Constants.USERS)
@@ -345,8 +347,8 @@ public class LoginActivity extends AppCompatActivity {
                                             @Override
                                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                                 if (dataSnapshot.exists()) {
-                                                    if (dataSnapshot.getValue(User.class).getUserPassword() ==
-                                                            etPassLoin.getText().toString()) {
+                                                    if (TextUtils.equals(dataSnapshot.getValue(User.class).getUserPassword(),
+                                                            etPassLoin.getText().toString())) {
                                                         spotsDialog.dismiss();
 
                                                         Log.e(TAG, "onDataChange:  pass ");
@@ -356,6 +358,8 @@ public class LoginActivity extends AppCompatActivity {
                                                         Toast.makeText(LoginActivity.this, Constants.INVALID_PASS, Toast.LENGTH_SHORT).show();
                                                         spotsDialog.dismiss();
                                                         etPassLoin.setError(Constants.INVALID_PASS);
+                                                        startWobble(etPassLoin);
+
                                                     }
 
                                                 } else {
@@ -373,6 +377,7 @@ public class LoginActivity extends AppCompatActivity {
                                 spotsDialog.dismiss();
                                 Toast.makeText(LoginActivity.this, Constants.INVALID_PHONE, Toast.LENGTH_SHORT).show();
                                 etPhoneLogin.setError(Constants.INVALID_PHONE);
+                                startWobble(etPhoneLogin);
                             }
                         } else {
                         }

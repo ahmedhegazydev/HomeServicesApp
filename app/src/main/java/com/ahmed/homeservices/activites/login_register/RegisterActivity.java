@@ -161,24 +161,60 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     private void insertCatItemsIntoFireDatabaseTest() {
 
         ArrayList<Category> categories = new ArrayList<>();
-        categories.add(new Category("Ac", 0));
-        categories.add(new Category("Electrician", 0));
-        categories.add(new Category("Plumber", 0));
-        categories.add(new Category("Carpenter", 0));
-        categories.add(new Category("TV", 0));
-        categories.add(new Category("Refrigerator", 0));
-        categories.add(new Category("Appliances", 0));
-        categories.add(new Category("RO", 0));
-        categories.add(new Category("Computers", 0));
-        categories.add(new Category("Mobile", 0));
-        categories.add(new Category("Home Security", 0));
-        categories.add(new Category("Pest Control", 0));
-        categories.add(new Category("Car Wash", 0));
-        categories.add(new Category("Cleaning", 0));
-        categories.add(new Category("Painting", 0));
-        categories.add(new Category("Washing Machine", 0));
-        categories.add(new Category("Packers Movers", 0));
-        categories.add(new Category("Laundry", 0));
+        categories.add(new Category("Ac", "https://firebasestorage.google" +
+                "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
+                "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
+        categories.add(new Category("Electrician", "https://firebasestorage.google" +
+                "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
+                "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
+        categories.add(new Category("Plumber", "https://firebasestorage.google" +
+                "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
+                "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
+        categories.add(new Category("Carpenter", "https://firebasestorage.google" +
+                "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
+                "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
+        categories.add(new Category("TV", "https://firebasestorage.google" +
+                "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
+                "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
+        categories.add(new Category("Refrigerator", "https://firebasestorage.google" +
+                "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
+                "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
+        categories.add(new Category("Appliances", "https://firebasestorage.google" +
+                "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
+                "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
+        categories.add(new Category("RO", "https://firebasestorage.google" +
+                "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
+                "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
+        categories.add(new Category("Computers", "https://firebasestorage.google" +
+                "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
+                "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
+        categories.add(new Category("Mobile", "https://firebasestorage.google" +
+                "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
+                "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
+        categories.add(new Category("Home Security", "https://firebasestorage.google" +
+                "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
+                "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
+        categories.add(new Category("Pest Control", "https://firebasestorage.google" +
+                "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
+                "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
+        categories.add(new Category("Car Wash", "https://firebasestorage.google" +
+                "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
+                "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
+        categories.add(new Category("Cleaning", "https://firebasestorage.google" +
+                "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
+                "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
+        categories.add(new Category("Painting", "https://firebasestorage.google" +
+                "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
+                "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
+        categories.add(new Category("Washing Machine", "https://firebasestorage.google" +
+                "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
+                "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
+        categories.add(new Category("Packers Movers", "https://firebasestorage.google" +
+                "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
+                "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
+        categories.add(new Category("Laundry", "https://firebasestorage.google" +
+                "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
+                "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
 
 
         for (Category category :
