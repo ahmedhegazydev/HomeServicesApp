@@ -48,6 +48,18 @@ android {
 
 dependencies {
 
+
+    implementation ('com.alimuzaffar.lib:pinentryedittext:2.0.6') {
+        // Exclude is only needed if you already have
+        // androidx.appcompat as a dependency in your app.
+        exclude group: 'androidx.appcompat', module: 'appcompat'
+    }
+
+    implementation 'com.irozon.sneaker:sneaker:2.0.0'
+
+    implementation 'com.hbb20:ccp:2.2.9'
+
+
 //kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 

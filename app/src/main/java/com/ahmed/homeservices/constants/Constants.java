@@ -12,4 +12,9 @@ public final class Constants {
     public static final String NETWORK_ERROR = "Network connection error";
 
 
+    public static final String USERS = "USERS";
+
+    public static final String PHONE = "phoneNumber";
+    public static final String INVALID_PHONE = "Phone is invalid";
+    public static final String INVALID_PASS = "Password is invalid";
 }

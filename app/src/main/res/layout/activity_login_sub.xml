@@ -57,29 +57,70 @@
         <!--android:textColorHint="#ffffff"-->
         <!--android:textSize="14.4sp" />-->
 
-        <com.ahmed.homeservices.customfonts.EditText_Roboto_Regular
-            android:id="@+id/etPhoneLogin"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="34.6dp"
-            android:layout_marginRight="33.6dp"
-            android:background="#00000000"
-            android:drawableLeft="@drawable/user"
-            android:drawablePadding="10dp"
-            android:hint="Phone number"
-            android:inputType="text"
-            android:textColor="#ffffff"
-            android:textColorHint="#ffffff"
-            android:textSize="14.4sp" />
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="34.6dp"
             android:layout_marginTop="6.5dp"
             android:layout_marginRight="33.6dp"
-            android:background="#33ffffff" />
+            android:gravity="bottom"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/countryCodePicker"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:ccp_areaCodeDetectedCountry="true"
+                    app:ccp_autoDetectCountry="true"
+                    app:ccp_autoDetectLanguage="true"
+                    app:ccp_contentColor="@color/White"
+                    app:ccp_defaultLanguage="ENGLISH"
+                    app:ccp_rememberLastSelection="true"
+                    app:ccp_showFlag="false"
+                    app:ccp_showNameCode="false"
+                    app:ccp_textSize="16sp" />
+
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="3dp"
+                android:orientation="vertical">
+
+                <com.ahmed.homeservices.customfonts.EditText_Roboto_Regular
+                    android:id="@+id/etPhoneLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#00000000"
+                    android:drawableLeft="@drawable/user"
+                    android:drawablePadding="10dp"
+                    android:hint="Phone number"
+                    android:inputType="text"
+                    android:textColor="#ffffff"
+                    android:textColorHint="#ffffff"
+                    android:textSize="14.4sp" />
+
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="6.5dp"
+                    android:background="#33ffffff" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
 
 
         <com.ahmed.homeservices.customfonts.EditText_Roboto_Regular
