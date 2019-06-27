@@ -11,7 +11,6 @@ import android.widget.TextView;
 import com.ahmed.homeservices.R;
 import com.ahmed.homeservices.models.Category;
 import com.ahmed.homeservices.view_holders.ViewHolderCat;
-import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -70,9 +69,9 @@ public class CategoriesAdapter extends BaseAdapter {
         final ViewHolderCat viewHolder = (ViewHolderCat) convertView.getTag();
 
 
-//        viewHolder.imageViewIcon.setImageResource(category.getIconResId());
-        Picasso.get().load(category.getDownloadUrl())
-                .into(viewHolder.imageViewIcon);
+        viewHolder.imageViewIcon.setImageResource(category.getIconResId());
+//        Picasso.get().load(category.getDownloadUrl())
+//                .into(viewHolder.imageViewIcon);
 
 //        viewHolder.tvTitle.setText(mContext.getString(category.getTitle()));
         viewHolder.tvTitle.setText(category.getTitle());

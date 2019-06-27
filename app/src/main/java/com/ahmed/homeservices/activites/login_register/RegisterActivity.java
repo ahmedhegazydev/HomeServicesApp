@@ -29,7 +29,6 @@ import com.ahmed.homeservices.utils.Utils;
 import com.airbnb.lottie.LottieAnimationView;
 import com.daimajia.androidanimations.library.Techniques;
 import com.daimajia.androidanimations.library.YoYo;
-import com.google.android.gms.tasks.OnCanceledListener;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -164,10 +163,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         categories.add(new Category("Ac", "https://firebasestorage.google" +
                 "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
                 "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
-        categories.add(new Category("Electrician", "https://firebasestorage.google" +
+        categories.add(new Category("electrician", "https://firebasestorage.google" +
                 "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
                 "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
-        categories.add(new Category("Plumber", "https://firebasestorage.google" +
+        categories.add(new Category("plumber", "https://firebasestorage.google" +
                 "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
                 "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
         categories.add(new Category("Carpenter", "https://firebasestorage.google" +
@@ -176,34 +175,34 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         categories.add(new Category("TV", "https://firebasestorage.google" +
                 "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
                 "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
-        categories.add(new Category("Refrigerator", "https://firebasestorage.google" +
+        categories.add(new Category("refrigerator", "https://firebasestorage.google" +
                 "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
                 "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
-        categories.add(new Category("Appliances", "https://firebasestorage.google" +
+        categories.add(new Category("appliances", "https://firebasestorage.google" +
                 "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
                 "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
-        categories.add(new Category("RO", "https://firebasestorage.google" +
+        categories.add(new Category("ro", "https://firebasestorage.google" +
                 "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
                 "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
-        categories.add(new Category("Computers", "https://firebasestorage.google" +
+        categories.add(new Category("computers", "https://firebasestorage.google" +
                 "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
                 "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
-        categories.add(new Category("Mobile", "https://firebasestorage.google" +
+        categories.add(new Category("mobile", "https://firebasestorage.google" +
                 "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
                 "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
-        categories.add(new Category("Home Security", "https://firebasestorage.google" +
+        categories.add(new Category("home_secure", "https://firebasestorage.google" +
                 "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
                 "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
-        categories.add(new Category("Pest Control", "https://firebasestorage.google" +
+        categories.add(new Category("peast_control", "https://firebasestorage.google" +
                 "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
                 "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
-        categories.add(new Category("Car Wash", "https://firebasestorage.google" +
+        categories.add(new Category("car_wash", "https://firebasestorage.google" +
                 "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
                 "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
         categories.add(new Category("Cleaning", "https://firebasestorage.google" +
                 "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
                 "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
-        categories.add(new Category("Painting", "https://firebasestorage.google" +
+        categories.add(new Category("painting", "https://firebasestorage.google" +
                 "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
                 "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
         categories.add(new Category("Washing Machine", "https://firebasestorage.google" +
@@ -212,7 +211,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         categories.add(new Category("Packers Movers", "https://firebasestorage.google" +
                 "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
                 "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
-        categories.add(new Category("Laundry", "https://firebasestorage.google" +
+        categories.add(new Category("laundry", "https://firebasestorage.google" +
                 "apis.com/v0/b/facelockerapp.appspot.com/o/finished.png?alt=media&token" +
                 "=f1604be5-00d8-49e2-8b2c-30a10858e495"));
 
@@ -430,7 +429,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
 //        registerUserUsingEmailPassword();
         String fullPhone = countryCodePicker.getSelectedCountryCodeWithPlus() + etUserPhone.getText().toString();
-        Log.e(TAG, "register: "+ fullPhone);
+        Log.e(TAG, "register: " + fullPhone);
         startPhoneNumberVerification(fullPhone);
 
 
@@ -470,11 +469,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                                                         }
                                                     }).addOnFailureListener(e -> {
-                                                        Toast.makeText(RegisterActivity.this, Constants.NETWORK_ERROR, Toast.LENGTH_SHORT).show();
-                                                        spotsDialog.dismiss();
+                                                Toast.makeText(RegisterActivity.this, Constants.NETWORK_ERROR, Toast.LENGTH_SHORT).show();
+                                                spotsDialog.dismiss();
 
 
-                                                    })
+                                            })
                                                     .addOnCanceledListener(() -> {
 
                                                     });
@@ -653,6 +652,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     // Invalid request
                     etUserPhone.setError("Invalid Phone Number !");
                     Sneaker.with(RegisterActivity.this).setTitle("Invalid Phone Number !").sneakError();
+                    startWobble(etUserPhone);
                     spotsDialog.dismiss();
 
                 } else if (e instanceof FirebaseTooManyRequestsException) { // Quota exceeded
@@ -689,7 +689,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             }
         };
     }
-
 
     public String getmVerificationId() {
         return mVerificationId;

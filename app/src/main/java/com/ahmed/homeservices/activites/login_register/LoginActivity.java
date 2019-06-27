@@ -312,6 +312,8 @@ public class LoginActivity extends AppCompatActivity {
         fireLoginWithPhonePassword();
     }
 
+    ValueEventListener valueEventListener;
+
     private void fireLoginWithPhonePassword() {
         if (!spotsDialog.isShowing())
             spotsDialog.show();
@@ -320,7 +322,8 @@ public class LoginActivity extends AppCompatActivity {
 
 //        FirebaseDatabase.getInstance().getReference(Constants.APP_FIREBASE_DATABASE_REF)
 //                .child(Constants.USERS)
-        RefBase.refUser(Prefs.getString(Constants.FIREBASE_UID, ""))
+        valueEventListener = RefBase.refUser(Prefs.getString(Constants.FIREBASE_UID,
+                ""))
 //                .child(Prefs.getString(Constants.FIREBASE_UID, ""))
 //                .child(Constants.PHONE)
 //                .equalTo(etPhoneLogin.getText().toString())
@@ -379,6 +382,8 @@ public class LoginActivity extends AppCompatActivity {
                                 etPhoneLogin.setError(Constants.INVALID_PHONE);
                                 startWobble(etPhoneLogin);
                             }
+                            dataSnapshot.getRef().removeEventListener(valueEventListener);
+
                         } else {
                         }
 

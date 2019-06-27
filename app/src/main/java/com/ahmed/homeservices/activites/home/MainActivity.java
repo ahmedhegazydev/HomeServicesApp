@@ -5,17 +5,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.ahmed.homeservices.R;
 import com.ahmed.homeservices.activites.login_register.LoginActivity;
 import com.ahmed.homeservices.activites.profile.ProfileActivity;
 import com.ahmed.homeservices.adapters.MenuAdapter;
-
-import androidx.appcompat.widget.Toolbar;
-
 import com.ahmed.homeservices.fragments.FragmentAboutUs;
 import com.ahmed.homeservices.fragments.FragmentBookings;
 import com.ahmed.homeservices.fragments.FragmentContactUs;
@@ -24,18 +23,8 @@ import com.ahmed.homeservices.fragments.FragmentHistory;
 import com.ahmed.homeservices.fragments.FragmentNotifications;
 import com.ahmed.homeservices.fragments.FragmentSearch;
 import com.ahmed.homeservices.fragments.FragmentServices;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
-import com.ahmed.homeservices.R;
 import com.ahmed.homeservices.fragments.FragmentSettings;
 import com.ahmed.homeservices.utils.Utils;
-import com.facebook.login.LoginManager;
-import com.google.android.gms.auth.api.Auth;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,6 +43,10 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Utils.getInstance().fullScreen(this);
+
+
         setContentView(R.layout.activity_main);
         mTitles = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.menuOptions)));
 
@@ -171,6 +164,7 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
             case 8:
                 fragment = new FragmentContactUs();
                 break;
+
             default:
 
                 break;
@@ -200,9 +194,9 @@ public class MainActivity extends AppCompatActivity implements DuoMenuView.OnMen
         private Toolbar mToolbar;
 
         ViewHolder() {
-            mDuoDrawerLayout = (DuoDrawerLayout) findViewById(R.id.drawer);
+            mDuoDrawerLayout = findViewById(R.id.drawer);
             mDuoMenuView = (DuoMenuView) mDuoDrawerLayout.getMenuView();
-            mToolbar = (Toolbar) findViewById(R.id.toolbar);
+            mToolbar = findViewById(R.id.toolbar);
         }
     }
 

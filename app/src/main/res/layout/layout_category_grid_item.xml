@@ -9,13 +9,20 @@
 
     >
 
-    <ImageView
-        android:id="@+id/ivIcon"
-        android:background="@color/White"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/profile" />
+    <RelativeLayout
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@color/White">
+
+        <ImageView
+            android:id="@+id/ivIcon"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_centerInParent="true"
+            android:background="@color/White"
+            android:scaleType="centerCrop"
+            android:src="@drawable/profile" />
+    </RelativeLayout>
 
     <TextView
         android:id="@+id/tvTitle"
@@ -24,8 +31,8 @@
         android:background="@color/White"
         android:ellipsize="end"
         android:gravity="center"
-        android:padding="10dp"
         android:maxLines="1"
+        android:padding="10dp"
         android:text="Painting"
         android:textColor="@color/Gray"
         android:textSize="14sp"

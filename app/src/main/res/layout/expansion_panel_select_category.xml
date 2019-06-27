@@ -11,8 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:expansion_headerIndicator="@id/headerIndicator"
-        app:expansion_layout="@id/expansionLayout"
-        app:expansion_toggleOnClick="true">
+        app:expansion_layout="@id/expansionLayoutGridView"
+        app:expansion_toggleOnClick="true"
+
+        >
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -25,16 +27,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="Trip name"
+                android:text="Select Category"
                 android:textColor="#3E3E3E" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="120dp"
-                android:text="Carribean cruise"
-                android:textColor="#AAA" />
+            <!--<TextView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_centerVertical="true"-->
+            <!--android:layout_marginLeft="120dp"-->
+            <!--android:text="Carribean cruise"-->
+            <!--android:textColor="#AAA" />-->
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/headerIndicator"
@@ -51,10 +53,12 @@
     </com.github.florent37.expansionpanel.ExpansionHeader>
 
     <com.github.florent37.expansionpanel.ExpansionLayout
-        android:id="@+id/expansionLayout"
+        android:id="@+id/expansionLayoutGridView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:expansion_expanded="false">
+        app:expansion_expanded="false"
+
+        >
 
         <LinearLayout
             android:id="@+id/container"
@@ -62,29 +66,28 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:background="#EEE"
-                android:gravity="center"
-                android:text="content" />
 
             <GridView
                 android:id="@+id/gridviewCategories"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="300dp"
+                android:choiceMode="multipleChoiceModal"
                 android:columnWidth="100dp"
                 android:gravity="center"
-                android:horizontalSpacing="5dp"
-                android:numColumns="4"
-                android:stretchMode="spacingWidthUniform"
-                android:verticalSpacing="5dp"
+                android:horizontalSpacing="0dp"
+                android:numColumns="3"
+                android:overScrollMode="never"
+                android:padding="8dp"
+                android:scrollbars="none"
+                android:stretchMode="columnWidth"
+                android:verticalSpacing="0dp"
                 tools:listitem="@layout/layout_category_grid_item"
 
                 />
 
-
         </LinearLayout>
 
     </com.github.florent37.expansionpanel.ExpansionLayout>
+
+
 </LinearLayout>
