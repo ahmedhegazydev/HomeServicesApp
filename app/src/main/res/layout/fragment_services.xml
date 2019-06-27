@@ -17,10 +17,16 @@
             android:layout_marginBottom="8dp"
             >
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:orientation="vertical">-->
+
+        <com.github.florent37.expansionpanel.viewgroup.ExpansionsViewGroupLinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:expansion_openOnlyOne="true"
+            android:orientation="vertical">
 
                 <include layout="@layout/expansion_panel_sample_panel" />
 
@@ -38,7 +44,9 @@
 
                 <include layout="@layout/expansion_panel_sample_panel" />
 
-            </LinearLayout>
+            <!--</LinearLayout>-->
+
+        </com.github.florent37.expansionpanel.viewgroup.ExpansionsViewGroupLinearLayout>
 
         </androidx.cardview.widget.CardView>
 
