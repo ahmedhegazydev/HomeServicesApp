@@ -22,4 +22,21 @@
     <!--<item name="colorAccent">@color/Coral</item>-->
     <!--</style>-->
 
+
+    <style name="Theme.Transparent" parent="@style/Theme.AppCompat.Light.NoActionBar">
+        <!--<item name="android:windowDrawsSystemBarBackgrounds">true</item>-->
+        <!--<item name="colorPrimary">@android:color/transparent</item>-->
+        <item name="colorPrimary">@color/Orange</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+        <item name="android:windowBackground">@color/Orange</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="actionMenuTextColor">@color/white</item>
+        <item name="android:actionMenuTextColor">@color/white</item>
+        <!--<item name="android:windowTranslucentStatus">true</item>-->
+        <!--<item name="android:windowTranslucentNavigation">true</item>-->
+    </style>
+
 </resources>

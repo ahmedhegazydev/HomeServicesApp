@@ -13,6 +13,7 @@ public class User {
     private boolean userStatusActivation = false;
     private String createDate;
     private String addressOrCurruntLocation;
+    private String userPhoto = Constants.NULL;
 
     public User(String userName, String userPassword, String userEmail, String userPhoneNumber, String userType, boolean userStatusActivation) {
         this.userName = userName;

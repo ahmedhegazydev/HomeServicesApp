@@ -8,6 +8,7 @@ import android.os.CountDownTimer;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -67,6 +68,16 @@ public class EnterSmsCodeActivity extends AppCompatActivity {
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     private PhoneAuthProvider.ForceResendingToken mResendToken;
     private String mVerificationId;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        showSoftKeyBoard();
+    }
+
+    private void showSoftKeyBoard() {
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+    }
 
     @Override
     protected void onPostCreate(@Nullable Bundle savedInstanceState) {

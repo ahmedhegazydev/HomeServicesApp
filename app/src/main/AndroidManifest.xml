@@ -5,6 +5,10 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
 
     <application
         android:name=".config.AppConfig"
@@ -16,7 +20,10 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:icon">
-        <activity android:name=".activites.profile.EditActivity"></activity>
+        <activity
+            android:name=".activites.profile.EditActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.Transparent"></activity>
         <activity
             android:name=".activites.phone.EnterSmsCodeActivity"
             android:screenOrientation="portrait">
@@ -78,7 +85,9 @@
             <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
             <!-- </intent-filter> -->
         </activity>
-        <activity android:name=".activites.home.MainActivity">
+        <activity
+            android:name=".activites.home.MainActivity"
+            android:screenOrientation="portrait">
 
             <!-- <intent-filter> -->
             <!-- <action android:name="android.intent.action.MAIN" /> -->

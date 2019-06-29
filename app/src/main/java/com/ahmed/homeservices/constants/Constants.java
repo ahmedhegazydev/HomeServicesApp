@@ -19,4 +19,14 @@ public final class Constants {
     public static final String CATEGORY = "CATEGORY";
     public static final String PASSWORD = "userPassword";
     public static final String FIREBASE_UID = "FIREBASE_UID";
+    public static final String NULL = "Null";
+
+    public static final String USER_PHOTO = "userPhoto";
+    public static final String EDIT_FIELD_TYPE = "EDIT_FIELD_TYPE";
+
+
+    public static final String EDIT_FULLNAME = "EDIT_FULLNAME ";
+    public static final String EDIT_EMAIL = "EDIT_EMAIL";
+    public static final String EDIT_PHONE_NUMBER = "EDIT_PHONE_NUMBER";
+    public static final String EDIT_PASSWORD = "EDIT_PASSWORD";
 }
