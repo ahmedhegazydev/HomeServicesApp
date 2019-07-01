@@ -78,7 +78,6 @@ public class FragmentServices extends Fragment implements AdapterView.OnItemClic
         Log.e(TAG, "sampleHeader: ");
     }
 
-
     @OnClick(R.id.btnOrderNow)
     public void btnOrderNow(View v) {
 

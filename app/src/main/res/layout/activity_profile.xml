@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,10 +8,23 @@
     android:orientation="vertical"
     tools:context=".activites.profile.ProfileActivity">
 
+    <androidx.appcompat.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/toolbarProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/Orange"
+        android:minHeight="?attr/actionBarSize"
+        app:navigationIcon="@drawable/back_white"
+
+        />
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:id="@+id/userPhoto"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/ripple_grey"
+        android:layout_centerHorizontal="true"
+        >
 
         <com.github.siyamed.shapeimageview.CircularImageView
             android:id="@+id/ivUserPhoto"
@@ -22,11 +35,25 @@
             android:src="@drawable/profile"
             app:siBorderColor="@color/Orange"
             app:siBorderWidth="1dp" />
+
+        <com.github.ybq.android.spinkit.SpinKitView
+            android:id="@+id/progress"
+            style="@style/SpinKitView.Large.Circle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_gravity="center"
+            app:SpinKit_Color="@color/Orange"
+
+            />
+
+
     </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/userPhoto"
         android:background="@color/graylight">
 
         <LinearLayout
@@ -109,6 +136,7 @@
                 android:foreground="?android:attr/selectableItemBackground">
 
                 <LinearLayout
+                    android:background="@drawable/ripple_grey"
                     android:id="@+id/llPhoneNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -169,4 +197,4 @@
 
         </LinearLayout>
     </ScrollView>
-</LinearLayout>
+</RelativeLayout>

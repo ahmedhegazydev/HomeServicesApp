@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.ahmed.homeservices.R;
 import com.ahmed.homeservices.constants.Constants;
@@ -24,6 +25,7 @@ import com.ahmed.homeservices.models.User;
 import com.ahmed.homeservices.utils.Utils;
 import com.github.rubensousa.bottomsheetbuilder.BottomSheetBuilder;
 import com.github.rubensousa.bottomsheetbuilder.BottomSheetMenuDialog;
+import com.github.ybq.android.spinkit.SpinKitView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -36,6 +38,7 @@ import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
 import java.util.UUID;
 
@@ -81,10 +84,16 @@ public class ProfileActivity extends AppCompatActivity implements
     StorageReference storageReference;
     ProgressDialog progressDialog;
     Intent intentEditActovoty;
+    @BindView(R.id.toolbarProfile)
+    Toolbar toolbar;
+    @BindView(R.id.progress)
+    SpinKitView progress;
+
 
     @OnClick(R.id.llFullName)
     public void llFullName(View v) {
         intentEditActovoty.putExtra(Constants.EDIT_FIELD_TYPE, Constants.EDIT_FULLNAME);
+        intentEditActovoty.putExtra(Constants.EDIT_FULLNAME, tvFullName.getText().toString());
         startActivity(intentEditActovoty);
     }
 
@@ -116,9 +125,18 @@ public class ProfileActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
         ButterKnife.bind(this);
-        setUserProfileData();
         initVars();
+        setUserProfileData();
         initIntents();
+        toolbar.setNavigationOnClickListener(view -> {
+            //finish();
+            onBackPressed();
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 
     private void initIntents() {
@@ -132,7 +150,9 @@ public class ProfileActivity extends AppCompatActivity implements
     }
 
     private void setUserProfileData() {
-        spotsDialog.show();
+//        spotsDialog.show();
+        if (FirebaseAuth.getInstance().getCurrentUser() == null)
+            return;
         RefBase.refUser(FirebaseAuth.getInstance().getCurrentUser().getUid())
                 .addValueEventListener(new ValueEventListener() {
                     @Override
@@ -145,6 +165,27 @@ public class ProfileActivity extends AppCompatActivity implements
                             tvEmail.setText(user.getUserEmail());
                             tvPassword.setText(user.getUserPassword());
                             tvPhoneNumber.setText(user.getUserPhoneNumber());
+
+                            //get user photo
+                            HashMap map = (HashMap<String, Object>) dataSnapshot.getValue();
+                            if (map != null) {
+                                if (map.get(Constants.USER_PHOTO) != null) {
+                                    Picasso.get().load(map.get(Constants.USER_PHOTO).toString())
+                                            .into(ivUserPhoto, new Callback() {
+                                                @Override
+                                                public void onSuccess() {
+//                                                    Toast.makeText(ProfileActivity.this, "Success", Toast.LENGTH_SHORT).show();
+                                                    progress.setVisibility(View.GONE);
+
+                                                }
+
+                                                @Override
+                                                public void onError(Exception e) {
+
+                                                }
+                                            });
+                                }
+                            }
 
                             spotsDialog.dismiss();
 
@@ -223,7 +264,6 @@ public class ProfileActivity extends AppCompatActivity implements
 
 
     }
-
 
     private void uploadPhoto(Uri filePath) {
 
@@ -306,7 +346,7 @@ public class ProfileActivity extends AppCompatActivity implements
 
     @Override
     public void onRationaleAccepted(int requestCode) {
-        updateProfilePhoto();
+//        updateProfilePhoto();
     }
 
     @Override
