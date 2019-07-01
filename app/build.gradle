@@ -52,6 +52,7 @@ dependencies {
 //    implementation project(":datetimepickeredittext")
     implementation 'com.github.BlackBoxVision:datetimepicker-edittext:v0.4.0'
 
+    implementation 'com.robertlevonyan.view:MaterialChipView:1.2.5'
 
     implementation 'com.github.florent37:expansionpanel:1.2.2'
 

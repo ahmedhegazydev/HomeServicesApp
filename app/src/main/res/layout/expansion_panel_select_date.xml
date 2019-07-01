@@ -114,7 +114,6 @@
                 android:background="@drawable/rounded_bg"
                 android:hint="Enter Time"
                 android:padding="2dp"
-
                 app:hintEnabled="true">
 
                 <!--<io.blackbox_vision.datetimepickeredittext.view.TimePickerInputEditText-->

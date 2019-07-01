@@ -27,4 +27,13 @@ public final class RefBase {
     }
 
 
+    public static DatabaseReference refSendRequest(String userId) {
+        return FirebaseDatabase.getInstance()
+                .getReference(Constants.APP_FIREBASE_DATABASE_REF)
+                .child(Constants.REQUESTS)
+                .child(userId);
+
+    }
+
+
 }

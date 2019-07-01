@@ -29,4 +29,5 @@ public final class Constants {
     public static final String EDIT_EMAIL = "EDIT_EMAIL";
     public static final String EDIT_PHONE_NUMBER = "EDIT_PHONE_NUMBER";
     public static final String EDIT_PASSWORD = "EDIT_PASSWORD";
+    public static final String REQUESTS = "REQUESTS";
 }

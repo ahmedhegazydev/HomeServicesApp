@@ -24,9 +24,14 @@ import com.ahmed.homeservices.R;
 import com.ahmed.homeservices.adapters.grid.CategoriesAdapter;
 import com.ahmed.homeservices.fire_utils.RefBase;
 import com.ahmed.homeservices.models.Category;
+import com.ahmed.homeservices.models.Service;
 import com.ahmed.homeservices.utils.Utils;
 import com.github.florent37.expansionpanel.ExpansionLayout;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
@@ -65,6 +70,7 @@ public class FragmentServices extends Fragment implements AdapterView.OnItemClic
     TextInputEditText etDatePicker;
     @BindView(R.id.etTimePicker)
     TextInputEditText etTimePicker;
+    Context context;
     private Calendar now;
     private ArrayList<Category> categories = new ArrayList<>();
     // Source activity that display message in text view.
@@ -94,6 +100,26 @@ public class FragmentServices extends Fragment implements AdapterView.OnItemClic
             }
         }
 
+        Service service = new Service();
+        FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        if (firebaseUser == null)
+            return;
+
+        RefBase.refSendRequest(firebaseUser.getUid())
+                .setValue(service)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(context, "Request sent", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(context, "Failed Request Sent", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
 
     }
 
@@ -103,6 +129,13 @@ public class FragmentServices extends Fragment implements AdapterView.OnItemClic
         //ButterKnife.bind(getActivity(), view);
         ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        context = getActivity();
+
     }
 
     @Override

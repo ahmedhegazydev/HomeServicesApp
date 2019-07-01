@@ -67,23 +67,40 @@
             android:orientation="vertical">
 
 
+            <!--<GridView-->
+            <!--android:id="@+id/gridviewCategories"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="250dp"-->
+            <!--android:choiceMode="multipleChoiceModal"-->
+            <!--android:gravity="center"-->
+            <!--android:horizontalSpacing="0dp"-->
+            <!--android:numColumns="auto_fit"-->
+            <!--android:overScrollMode="never"-->
+            <!--android:padding="0dp"-->
+            <!--android:scrollbars="none"-->
+            <!--android:stretchMode="columnWidth"-->
+            <!--android:verticalSpacing="0dp"-->
+            <!--tools:listitem="@layout/layout_category_grid_item"-->
+            <!--/>-->
+
+
             <GridView
                 android:id="@+id/gridviewCategories"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="500dp"
                 android:choiceMode="multipleChoiceModal"
-                android:columnWidth="100dp"
                 android:gravity="center"
                 android:horizontalSpacing="0dp"
-                android:numColumns="3"
+                android:numColumns="4"
                 android:overScrollMode="never"
-                android:padding="8dp"
+                android:padding="0dp"
                 android:scrollbars="none"
                 android:stretchMode="columnWidth"
                 android:verticalSpacing="0dp"
                 tools:listitem="@layout/layout_category_grid_item"
 
                 />
+
 
         </LinearLayout>
 

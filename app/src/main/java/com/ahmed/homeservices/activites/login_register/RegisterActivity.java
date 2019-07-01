@@ -472,7 +472,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                                 Toast.makeText(RegisterActivity.this, Constants.NETWORK_ERROR, Toast.LENGTH_SHORT).show();
                                                 spotsDialog.dismiss();
 
-
                                             })
                                                     .addOnCanceledListener(() -> {
 
