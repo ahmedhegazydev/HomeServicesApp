@@ -4,7 +4,6 @@ import android.app.Activity;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
-//import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class SweetDialog {
     private static final SweetDialog ourInstance = new SweetDialog();

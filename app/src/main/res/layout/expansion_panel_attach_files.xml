@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="MissingDefaultResource">
 
     <com.github.florent37.expansionpanel.ExpansionHeader
         android:id="@+id/sampleHeader"
@@ -87,7 +88,7 @@
         android:id="@+id/expansionLayoutAttach"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:expansion_expanded="false"
+        app:expansion_expanded="true"
 
         >
 
@@ -121,13 +122,13 @@
                 android:layout_height="600dp"
                 android:choiceMode="multipleChoiceModal"
                 android:gravity="center"
-                android:horizontalSpacing="0dp"
-                android:numColumns="2"
+                android:horizontalSpacing="2dp"
+                android:numColumns="1"
                 android:overScrollMode="never"
                 android:padding="0dp"
                 android:scrollbars="none"
                 android:stretchMode="columnWidth"
-                android:verticalSpacing="0dp"
+                android:verticalSpacing="2dp"
                 android:visibility="gone"
                 tools:listitem="@layout/layout_attached_photos_grid_item"
 

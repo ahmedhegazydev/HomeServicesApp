@@ -67,6 +67,9 @@ import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 import pub.devrel.easypermissions.PermissionRequest;
 
+//import com.esafirm.imagepicker.features.ImagePicker;
+//import com.esafirm.imagepicker.model.Image;
+
 public class FragmentServices extends Fragment implements AdapterView.OnItemClickListener,
         DatePickerDialog.OnDateSetListener,
         TimePickerDialog.OnTimeSetListener,
@@ -93,10 +96,8 @@ public class FragmentServices extends Fragment implements AdapterView.OnItemClic
     ExpansionLayout expansionLayoutGridView;
     @BindView(R.id.expansionLayoutDate)
     ExpansionLayout expansionLayoutDate;
-
     @BindView(R.id.expansionLayoutAttach)
     ExpansionLayout expansionLayoutAttach;
-
     @BindView(R.id.gridviewSelectedCats)
     GridView gridviewSelectedCats;
     @BindView(R.id.gridviewAttachedPhotos)
@@ -181,7 +182,6 @@ public class FragmentServices extends Fragment implements AdapterView.OnItemClic
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         context = getActivity();
-
 
     }
 
@@ -426,10 +426,13 @@ public class FragmentServices extends Fragment implements AdapterView.OnItemClic
                             switch (item.getItemId()) {
                                 case R.id.chooseFromCamera:
                                     //EasyImage.openChooserWithGallery(getApplicationContext(), "Ch", int type);
-                                    EasyImage.openCamera(Objects.requireNonNull(getActivity()), 0);
+                                    EasyImage.openCamera(Objects.requireNonNull(FragmentServices.this), 0);
+//                                    ImagePicker.cameraOnly().start(FragmentServices.this); // Could be Activity, Fragment, Support Fragment
                                     break;
                                 case R.id.chooseFromGellery:
-                                    EasyImage.openGallery(Objects.requireNonNull(getActivity()), 0);
+                                    EasyImage.openGallery(Objects.requireNonNull(FragmentServices.this), 0);
+//                                    ImagePicker.create(FragmentServices.this) // Activity or Fragment
+//                                            .start();
                                     break;
 //                        case R.id.removePhoto:
 //                            removePhoto();
@@ -442,8 +445,16 @@ public class FragmentServices extends Fragment implements AdapterView.OnItemClic
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        if (ImagePicker.shouldHandle(requestCode, resultCode, data)) {
+//            // Get a list of picked images
+//            List<Image> images = ImagePicker.getImages(data);
+//            // or get a single image only
+//            Image image = ImagePicker.getFirstImageOrNull(data);
+////            Uri uri = Uri.fromFile(image.getPath());
+//            setAdapterToGridViewAtachedPhoto(Uri.parse(image.getPath()));
+//            Log.e(TAG, "onActivityResult: ");
+//        }
         super.onActivityResult(requestCode, resultCode, data);
-
         EasyImage.handleActivityResult(requestCode,
                 resultCode,
                 data,
@@ -481,74 +492,6 @@ public class FragmentServices extends Fragment implements AdapterView.OnItemClic
         expansionLayoutAttach.expand(true);
     }
 
-//    private void uploadPhoto(Uri filePath) {
-//
-//        storage = FirebaseStorage.getInstance();
-//        storageReference = storage.getReference();
-//
-//
-//        if (filePath != null) {
-//            progressDialog = new ProgressDialog(getActivity());
-//            progressDialog.setTitle("Uploading...");
-//            progressDialog.setCancelable(false);
-//            progressDialog.setCanceledOnTouchOutside(false);
-//            progressDialog.show();
-//
-//
-//            ref = storageReference.child("images/" + UUID.randomUUID().toString());
-////            ref = storageReference.child("images/" + firebaseUser.getUid());
-//
-//            ref.putFile(filePath)
-//                    .addOnSuccessListener(taskSnapshot -> {
-//                        progressDialog.dismiss();
-//                        Toast.makeText(getApplicationContext(), "Uploaded", Toast.LENGTH_SHORT).show();
-//                        ref.getDownloadUrl().addOnSuccessListener(uri -> {
-//                            //Log.d(TAG, "onSuccess: uri= "+ uri.toString());
-//
-////                                User user = new User();
-////                                user.setUserImageProfile(uri.toString());
-////                                user.setPassword(etEnterNewPassword.getText().toString());
-////                                user.setUserEmail(firebaseUser.getEmail());
-////                                user.setUserName(firebaseUser.getDisplayName());
-//
-//
-//                            FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-//                            if (firebaseUser == null)
-//                                return;
-//                            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-//                            RefBase.refUser(firebaseUser.getUid())
-////                            DatabaseReference databaseReference = firebaseDatabase.getReferee(Constants.DATABASE_ROOT_USERS);
-////                            databaseReference.child(firebaseUser.getUid())
-//                                    .child(Constants.USER_PHOTO)
-//                                    //.setValue(user)
-//                                    .setValue(uri.toString())
-//                                    .addOnCompleteListener(task -> {
-//                                        if (task.isComplete()) {
-//                                            Toast.makeText(ProfileActivity.this, "Photo updated",
-//                                                    Toast.LENGTH_SHORT).show();
-//                                        } else {
-//                                            Toast.makeText(getApplicationContext(), Constants.NETWORK_ERROR,
-//                                                    Toast.LENGTH_SHORT).show();
-//                                        }
-//                                        if (spotsDialog != null)
-//                                            spotsDialog.dismiss();
-//
-//                                    });
-//
-//                        });
-//                    })
-//                    .addOnFailureListener(e -> {
-//                        progressDialog.dismiss();
-//                        Toast.makeText(getApplicationContext(), "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
-//                    })
-//                    .addOnProgressListener(taskSnapshot -> {
-//                        double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot
-//                                .getTotalByteCount());
-//                        progressDialog.setMessage("Uploaded " + (int) progress + "%");
-//                    });
-//        }
-//
-//    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -719,4 +662,6 @@ public class FragmentServices extends Fragment implements AdapterView.OnItemClic
             }
         }
     }
+
+
 }

@@ -1,29 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:id="@+id/llItem"
     android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_margin="4dp"
+    android:background="@color/graylight"
     android:orientation="vertical">
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/ivPhoto"
-        android:layout_width="150dp"
-        android:layout_height="150dp" />
+        android:layout_width="200dp"
+        android:layout_height="150dp"
+        android:scaleType="centerCrop" />
 
 
-    <com.dd.CircularProgressButton
-        android:id="@+id/circularButton2"
-        android:layout_width="wrap_content"
+    <!--<com.github.siyamed.shapeimageview.CircularImageView-->
+    <!--android:id="@+id/ivPhoto"-->
+    <!--android:layout_width="100dp"-->
+    <!--android:layout_height="100dp"-->
+    <!--android:layout_centerInParent="false"-->
+    <!--android:layout_margin="6dp"-->
+    <!--android:src="@drawable/profile"-->
+    <!--app:siBorderColor="@color/Orange"-->
+    <!--app:siBorderWidth="1dp" />-->
+
+    <!--<com.dd.CircularProgressButton-->
+    <!--android:id="@+id/circularButton2"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:layout_marginTop="16dp"-->
+    <!--android:background="@drawable/rounded_bg2"-->
+    <!--android:textColor="@color/cpb_white"-->
+    <!--android:textSize="18sp"-->
+    <!--app:cpb_cornerRadius="48dp"-->
+    <!--app:cpb_iconComplete="@drawable/succcess"-->
+    <!--app:cpb_iconError="@drawable/cancel"-->
+    <!--app:cpb_textIdle="Upload" />-->
+
+
+    <!--<br.com.simplepass.loadingbutton.customViews.CircularProgressButton-->
+    <!--style="@style/Widget.AppCompat.Button.Colored"-->
+    <!--android:id="@+id/progressUpload"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="Upload"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--app:finalCornerAngle="100dp"-->
+    <!--app:initialCornerAngle="0dp"-->
+    <!--app:spinning_bar_color="#FFFFFF"-->
+    <!--app:spinning_bar_padding="0dp"-->
+    <!--app:spinning_bar_width="3dp"-->
+    <!--/>-->
+
+    <!--<com.nihaskalam.progressbuttonlibrary.CircularProgressButton-->
+    <!--android:id="@+id/progressUpload"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerInParent="true"-->
+    <!--android:onClick="onClickThirdBtn"-->
+    <!--android:textColor="@color/white"-->
+    <!--android:textSize="16sp"-->
+    <!--android:background="@drawable/rounded_bg2"-->
+    <!--app:pb_colorCancelText="@color/pb_orange"-->
+    <!--app:pb_colorCompleteText="@color/pb_orange"-->
+    <!--app:pb_colorErrorText="@color/pb_blue"-->
+    <!--app:pb_colorIndicator="@color/white"-->
+    <!--app:pb_cornerRadius="48dp"-->
+    <!--app:pb_iconCancel="@drawable/cancel"-->
+    <!--app:pb_iconComplete="@drawable/succcess"-->
+    <!--app:pb_iconError="@drawable/ic_error"-->
+    <!--app:pb_selectorCancel="@color/pb_cancel_state_selector"-->
+    <!--app:pb_selectorComplete="@color/white"-->
+    <!--app:pb_selectorError="@color/errorColor"-->
+    <!--app:pb_selectorIdle="@color/white"-->
+    <!--app:pb_textColorAfterClick="@color/white"-->
+    <!--app:pb_textIdle="Upload" />-->
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/rounded_bg2"
-        android:textColor="@color/cpb_white"
-        android:textSize="18sp"
-        app:cpb_cornerRadius="48dp"
-        app:cpb_iconComplete="@drawable/succcess"
-        app:cpb_iconError="@drawable/cancel"
-        app:cpb_textIdle="Upload" />
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/ivPhoto"
+        android:gravity="center"
+        android:orientation="horizontal">
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabUpload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@drawable/upload_white"
+            app:fabSize="auto" />
+        <!--<com.google.android.material.floatingactionbutton.FloatingActionButton-->
+        <!--android:id="@+id/fabClose"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_gravity="bottom|end"-->
+        <!--android:layout_margin="@dimen/fab_margin"-->
+        <!--android:src="@android:drawable/ic_dialog_email" />-->
 
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabClose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            android:src="@drawable/close"
+            app:fabSize="auto"
+
+            />
+
+    </LinearLayout>
 </RelativeLayout>

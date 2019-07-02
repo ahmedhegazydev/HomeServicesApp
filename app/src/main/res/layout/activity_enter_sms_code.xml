@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="Please enter sms code"
-            android:textColor="@color/gray_btn_bg_pressed_color"
+            android:textColor="@color/gray"
             android:textSize="20sp" />
 
         <LinearLayout
@@ -70,7 +70,7 @@
                 android:paddingRight="10dp"
                 android:text="Resend sms code"
                 android:textAllCaps="false"
-                android:textColor="@color/gray_btn_bg_pressed_color"
+                android:textColor="@color/gray"
                 android:textSize="18sp" />
 
 
