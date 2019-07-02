@@ -1,9 +1,12 @@
 package com.ahmed.homeservices.fragments;
 
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.GestureDetector;
@@ -21,38 +24,62 @@ import androidx.core.view.GestureDetectorCompat;
 import androidx.fragment.app.Fragment;
 
 import com.ahmed.homeservices.R;
+import com.ahmed.homeservices.adapters.grid.AttachedAdapter;
 import com.ahmed.homeservices.adapters.grid.CategoriesAdapter;
 import com.ahmed.homeservices.fire_utils.RefBase;
 import com.ahmed.homeservices.models.Category;
 import com.ahmed.homeservices.models.Service;
 import com.ahmed.homeservices.utils.Utils;
 import com.github.florent37.expansionpanel.ExpansionLayout;
+import com.github.rubensousa.bottomsheetbuilder.BottomSheetBuilder;
+import com.github.rubensousa.bottomsheetbuilder.BottomSheetMenuDialog;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 import com.wdullaer.materialdatetimepicker.time.TimePickerDialog;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import pl.aprilapps.easyphotopicker.DefaultCallback;
+import pl.aprilapps.easyphotopicker.EasyImage;
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
+import pub.devrel.easypermissions.PermissionRequest;
 
 public class FragmentServices extends Fragment implements AdapterView.OnItemClickListener,
         DatePickerDialog.OnDateSetListener,
-        TimePickerDialog.OnTimeSetListener {
+        TimePickerDialog.OnTimeSetListener,
+        EasyPermissions.PermissionCallbacks, EasyPermissions.RationaleCallbacks {
 
+    public static final String[] PERMISSIONS = {
+            Manifest.permission.CAMERA,
+//            Manifest.permission.WRITE_CONTACTS,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+    };
     private static final String TAG = "FragmentServices";
+    private static final int RC_CAMERA_AND_STORAGE = 121;
     // Minimal x and y axis swipe distance.
     private static int MIN_SWIPE_DISTANCE_X = 100;
     private static int MIN_SWIPE_DISTANCE_Y = 100;
@@ -66,16 +93,28 @@ public class FragmentServices extends Fragment implements AdapterView.OnItemClic
     ExpansionLayout expansionLayoutGridView;
     @BindView(R.id.expansionLayoutDate)
     ExpansionLayout expansionLayoutDate;
+
+    @BindView(R.id.expansionLayoutAttach)
+    ExpansionLayout expansionLayoutAttach;
+
+    @BindView(R.id.gridviewSelectedCats)
+    GridView gridviewSelectedCats;
+    @BindView(R.id.gridviewAttachedPhotos)
+    GridView gridviewAttachedPhotos;
     @BindView(R.id.etDatePicker)
     TextInputEditText etDatePicker;
     @BindView(R.id.etTimePicker)
     TextInputEditText etTimePicker;
     Context context;
+    StorageReference ref = null;
+    FirebaseStorage storage;
+    StorageReference storageReference;
     private Calendar now;
     private ArrayList<Category> categories = new ArrayList<>();
     // Source activity that display message in text view.
     private AlertDialog spotsDialog;
     private TimePickerDialog tpd;
+    private ArrayList<Uri> uris = new ArrayList<>();
 
     @OnClick(R.id.sampleHeader)
     public void sampleHeader(View v) {
@@ -123,6 +162,13 @@ public class FragmentServices extends Fragment implements AdapterView.OnItemClic
 
     }
 
+    @OnClick(R.id.btnUploadPhoto)
+    public void btnUploadPhoto(View v) {
+//        Toast.makeText(context, "upload" +
+//                "", Toast.LENGTH_SHORT).show();
+        requestCamAndStoragePerms();
+    }
+
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_services, container, false);
@@ -136,6 +182,7 @@ public class FragmentServices extends Fragment implements AdapterView.OnItemClic
         super.onCreate(savedInstanceState);
         context = getActivity();
 
+
     }
 
     @Override
@@ -144,8 +191,9 @@ public class FragmentServices extends Fragment implements AdapterView.OnItemClic
         initVars();
         setAdapterTo(null);
 //        fetchCatIntoGridView();
-        passScrollFromExpantionToGridView();
+//        passScrollFromExpantionToGridView();
         intiVars();
+
     }
 
     private void intiVars() {
@@ -227,8 +275,6 @@ public class FragmentServices extends Fragment implements AdapterView.OnItemClic
             }
 
         });
-
-
     }
 
     private void fetchCatIntoGridView() {
@@ -322,6 +368,225 @@ public class FragmentServices extends Fragment implements AdapterView.OnItemClic
         etTimePicker.setText(strHrsToShow + ":" + datetime.get(Calendar.MINUTE) + " " + am_pm);
 
 
+    }
+
+    @Override
+    public void onPermissionsGranted(int requestCode, @NonNull List<String> perms) {
+        updateProfilePhoto();
+    }
+
+    @Override
+    public void onPermissionsDenied(int requestCode, @NonNull List<String> perms) {
+
+    }
+
+    @Override
+    public void onRationaleAccepted(int requestCode) {
+//        updateProfilePhoto();
+    }
+
+    @Override
+    public void onRationaleDenied(int requestCode) {
+
+
+    }
+
+    @AfterPermissionGranted(RC_CAMERA_AND_STORAGE)
+    private void requestCamAndStoragePerms() {
+        if (EasyPermissions.hasPermissions(getActivity(), PERMISSIONS)) {
+            // Already have permission, do the thing
+            updateProfilePhoto();
+        } else {
+            // Do not have permissions, request them now
+//            EasyPermissions.requestPermissions(this, getString(R.string.contacts_and_storage_rationale),
+//                    RC_CONTACT_AND_STORAGE, perms);
+            EasyPermissions.requestPermissions(
+                    new PermissionRequest.Builder(this, RC_CAMERA_AND_STORAGE, PERMISSIONS)
+                            .setRationale(R.string.cam_and_storage_rationale)
+                            .setPositiveButtonText(R.string.rationale_ask_ok)
+                            .setNegativeButtonText(R.string.rationale_ask_cancel)
+//                            .setTheme(R.style.AppTheme)
+                            .build());
+
+        }
+    }
+
+    private void updateProfilePhoto() {
+        @SuppressLint("ResourceType") BottomSheetMenuDialog dialog =
+                new BottomSheetBuilder(getActivity()
+                        , null)
+                        .setMode(BottomSheetBuilder.MODE_LIST)
+//                .setMode(BottomSheetBuilder.MODE_GRID)
+                        .addDividerItem()
+                        .expandOnStart(true)
+                        .setDividerBackground(R.color.grey_400)
+                        .setBackground(R.drawable.ripple_grey)
+                        .setMenu(R.menu.menu_image_picker)
+                        .setItemClickListener(item -> {
+                            switch (item.getItemId()) {
+                                case R.id.chooseFromCamera:
+                                    //EasyImage.openChooserWithGallery(getApplicationContext(), "Ch", int type);
+                                    EasyImage.openCamera(Objects.requireNonNull(getActivity()), 0);
+                                    break;
+                                case R.id.chooseFromGellery:
+                                    EasyImage.openGallery(Objects.requireNonNull(getActivity()), 0);
+                                    break;
+//                        case R.id.removePhoto:
+//                            removePhoto();
+//                            break;
+                            }
+                        })
+                        .createDialog();
+        dialog.show();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        EasyImage.handleActivityResult(requestCode,
+                resultCode,
+                data,
+                getActivity()
+//                FragmentServices.this
+                , new DefaultCallback() {
+                    @Override
+                    public void onImagePicked(File imageFile, EasyImage.ImageSource source, int type) {
+                        Uri uri = Uri.fromFile(imageFile);
+                        setAdapterToGridViewAtachedPhoto(uri);
+                        Log.e(TAG, "onImagePicked: ");
+//                Picasso.get().load(uri)
+//                        .into(ivUserPhoto, new Callback() {
+//                            @Override
+//                            public void onSuccess() {
+//                                Toast.makeText(getActivity(), "Success", Toast.LENGTH_SHORT).show();
+//                            }
+//
+//                            @Override
+//                            public void onError(Exception e) {
+//
+//                            }
+//                        });
+//                uploadPhoto(uri);
+                    }
+                });
+    }
+
+    private void setAdapterToGridViewAtachedPhoto(Uri uri) {
+        gridviewAttachedPhotos.setVisibility(View.VISIBLE);
+        uris.add(uri);
+        AttachedAdapter attachedAdapter = new AttachedAdapter(getActivity(), uris);
+        gridviewAttachedPhotos.setAdapter(attachedAdapter);
+        attachedAdapter.notifyDataSetChanged();
+        expansionLayoutAttach.expand(true);
+    }
+
+//    private void uploadPhoto(Uri filePath) {
+//
+//        storage = FirebaseStorage.getInstance();
+//        storageReference = storage.getReference();
+//
+//
+//        if (filePath != null) {
+//            progressDialog = new ProgressDialog(getActivity());
+//            progressDialog.setTitle("Uploading...");
+//            progressDialog.setCancelable(false);
+//            progressDialog.setCanceledOnTouchOutside(false);
+//            progressDialog.show();
+//
+//
+//            ref = storageReference.child("images/" + UUID.randomUUID().toString());
+////            ref = storageReference.child("images/" + firebaseUser.getUid());
+//
+//            ref.putFile(filePath)
+//                    .addOnSuccessListener(taskSnapshot -> {
+//                        progressDialog.dismiss();
+//                        Toast.makeText(getApplicationContext(), "Uploaded", Toast.LENGTH_SHORT).show();
+//                        ref.getDownloadUrl().addOnSuccessListener(uri -> {
+//                            //Log.d(TAG, "onSuccess: uri= "+ uri.toString());
+//
+////                                User user = new User();
+////                                user.setUserImageProfile(uri.toString());
+////                                user.setPassword(etEnterNewPassword.getText().toString());
+////                                user.setUserEmail(firebaseUser.getEmail());
+////                                user.setUserName(firebaseUser.getDisplayName());
+//
+//
+//                            FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+//                            if (firebaseUser == null)
+//                                return;
+//                            FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
+//                            RefBase.refUser(firebaseUser.getUid())
+////                            DatabaseReference databaseReference = firebaseDatabase.getReferee(Constants.DATABASE_ROOT_USERS);
+////                            databaseReference.child(firebaseUser.getUid())
+//                                    .child(Constants.USER_PHOTO)
+//                                    //.setValue(user)
+//                                    .setValue(uri.toString())
+//                                    .addOnCompleteListener(task -> {
+//                                        if (task.isComplete()) {
+//                                            Toast.makeText(ProfileActivity.this, "Photo updated",
+//                                                    Toast.LENGTH_SHORT).show();
+//                                        } else {
+//                                            Toast.makeText(getApplicationContext(), Constants.NETWORK_ERROR,
+//                                                    Toast.LENGTH_SHORT).show();
+//                                        }
+//                                        if (spotsDialog != null)
+//                                            spotsDialog.dismiss();
+//
+//                                    });
+//
+//                        });
+//                    })
+//                    .addOnFailureListener(e -> {
+//                        progressDialog.dismiss();
+//                        Toast.makeText(getApplicationContext(), "Failed " + e.getMessage(), Toast.LENGTH_SHORT).show();
+//                    })
+//                    .addOnProgressListener(taskSnapshot -> {
+//                        double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot
+//                                .getTotalByteCount());
+//                        progressDialog.setMessage("Uploaded " + (int) progress + "%");
+//                    });
+//        }
+//
+//    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        // Forward results to EasyPermissions
+        EasyPermissions.onRequestPermissionsResult(requestCode, permissions, grantResults, this);
+
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        createUserForTesting();
+    }
+
+    private void createUserForTesting() {
+        FirebaseAuth.getInstance().signInWithEmailAndPassword("wowrar1234@gmail.com", "1234567")
+                .addOnCompleteListener(getActivity(), new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            Log.d(TAG, "signInWithEmail:success");
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Log.w(TAG, "signInWithEmail:failure", task.getException());
+                            Toast.makeText(FragmentServices.this.getActivity(), "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+
+
+                        }
+
+                    }
+                });
     }
 
     public class DetectSwipeGestureListener extends GestureDetector.SimpleOnGestureListener {

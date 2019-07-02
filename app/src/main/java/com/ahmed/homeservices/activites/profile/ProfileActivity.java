@@ -227,7 +227,6 @@ public class ProfileActivity extends AppCompatActivity implements
                 })
                 .createDialog();
         dialog.show();
-
     }
 
     @Override

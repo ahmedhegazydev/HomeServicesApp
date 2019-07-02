@@ -25,7 +25,7 @@
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_centerVertical="true"
                 android:orientation="horizontal"
 
@@ -35,28 +35,39 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
                     android:paddingRight="10dp"
-                    android:src="@drawable/checked"
-                    android:textColor="#AAA"
-                    android:visibility="visible" />
+                    android:src="@drawable/attch"
+                    android:textColor="#AAA" />
 
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:text="Select Category"
+                    android:layout_gravity="center_vertical"
+                    android:text="Attach Photos"
                     android:textColor="#3E3E3E" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnUploadPhoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:background="@drawable/rounded_bg2"
+                    android:drawableRight="@drawable/upload_white"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
+                    android:text="Upload"
+                    android:textAllCaps="false"
+                    android:textColor="@color/White"
+                    android:textSize="13sp" />
+
+
             </LinearLayout>
 
-
-            <!--<TextView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_centerVertical="true"-->
-            <!--android:layout_marginLeft="120dp"-->
-            <!--android:text="Carribean cruise"-->
-            <!--android:textColor="#AAA" />-->
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/headerIndicator"
@@ -73,10 +84,10 @@
     </com.github.florent37.expansionpanel.ExpansionHeader>
 
     <com.github.florent37.expansionpanel.ExpansionLayout
-        android:id="@+id/expansionLayoutGridView"
+        android:id="@+id/expansionLayoutAttach"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:expansion_expanded="true"
+        app:expansion_expanded="false"
 
         >
 
@@ -84,40 +95,41 @@
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:orientation="vertical">
 
-
-            <!--<GridView-->
-            <!--android:id="@+id/gridviewCategories"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="250dp"-->
-            <!--android:choiceMode="multipleChoiceModal"-->
-            <!--android:gravity="center"-->
-            <!--android:horizontalSpacing="0dp"-->
-            <!--android:numColumns="auto_fit"-->
-            <!--android:overScrollMode="never"-->
-            <!--android:padding="0dp"-->
-            <!--android:scrollbars="none"-->
-            <!--android:stretchMode="columnWidth"-->
-            <!--android:verticalSpacing="0dp"-->
-            <!--tools:listitem="@layout/layout_category_grid_item"-->
-            <!--/>-->
-
+            <!--  <androidx.appcompat.widget.AppCompatButton
+                  android:id="@+id/btnUploadPhoto"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_margin="10dp"
+                  android:background="@drawable/rounded_bg2"
+                  android:drawableRight="@drawable/upload_white"
+                  android:drawablePadding="10dp"
+                  android:gravity="center"
+                  android:paddingLeft="10dp"
+                  android:paddingRight="10dp"
+                  android:text="Upload photo "
+                  android:textAllCaps="false"
+                  android:textColor="@color/White"
+                  android:textSize="13sp" />
+  -->
 
             <GridView
-                android:id="@+id/gridviewCategories"
+                android:id="@+id/gridviewAttachedPhotos"
                 android:layout_width="match_parent"
                 android:layout_height="600dp"
                 android:choiceMode="multipleChoiceModal"
                 android:gravity="center"
                 android:horizontalSpacing="0dp"
-                android:numColumns="4"
+                android:numColumns="2"
                 android:overScrollMode="never"
                 android:padding="0dp"
                 android:scrollbars="none"
                 android:stretchMode="columnWidth"
                 android:verticalSpacing="0dp"
-                tools:listitem="@layout/layout_category_grid_item"
+                android:visibility="gone"
+                tools:listitem="@layout/layout_attached_photos_grid_item"
 
                 />
 

@@ -22,12 +22,31 @@
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
 
-            <TextView
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="Select Date"
-                android:textColor="#3E3E3E" />
+                android:orientation="horizontal"
+
+                >
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:paddingRight="10dp"
+                    android:src="@drawable/date"
+                    android:textColor="#AAA" />
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Select Date"
+                    android:textColor="#3E3E3E" />
+            </LinearLayout>
 
             <!--<TextView-->
             <!--android:layout_width="wrap_content"-->
@@ -55,7 +74,7 @@
         android:id="@+id/expansionLayoutDate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:expansion_expanded="true">
+        app:expansion_expanded="false">
 
         <LinearLayout
             android:id="@+id/container"
